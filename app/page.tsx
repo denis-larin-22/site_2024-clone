@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-center gap-5 text-white bg-gradient-to-tl from-blue-600 via-cyan-500 to-blue-800">
@@ -6,6 +8,7 @@ export default function Home() {
         <h1 className="text-[#241a69]">PIRAMID 2024</h1>
       </div>
       <p className="text-2xl opacity-60">Soon...</p>
+      <Link className="text-2xl animate-bounce" href="/catalog">Catalog {'>'}</Link >
     </main>
   );
 }
