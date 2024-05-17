@@ -10,10 +10,28 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      container: {
+        center: true,
+        padding: '10px',
+        screens: {
+          '2xl': '1208px'
+        },
+      },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+      },
+      colors: {
+        // text
+        't-dark-text': '#1E1E1E',
+        //template's colors
+        't-blue-dark': '#0E0050',
+        't-blue': '#1000E5',
+        't-gray': '#BFC1CA',
+        't-green': '#1EBF91',
+        't-red': '#FF0A0A'
+
       },
     },
   },
