@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import { Comfortaa, Inter } from "next/font/google";
 import "./globals.css";
 import { Providers } from "./providers";
+import { comfortaaFont } from "./components/ui/fonts";
 
-const comfortaaFont = Comfortaa({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
   title: "Piramid",

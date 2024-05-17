@@ -18,9 +18,7 @@ const config: Config = {
         },
       },
       backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+        "t-blue-green-gradient": "linear-gradient(270deg, rgba(8,255,184,1) 50%, rgba(11,45,226,1) 100%)",
       },
       colors: {
         // text

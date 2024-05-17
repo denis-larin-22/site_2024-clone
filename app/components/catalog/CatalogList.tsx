@@ -1,6 +1,7 @@
 import Image from "next/image"
+import CatalogItem from "./CatalogItem"
 
-interface ICatalogItem {
+export interface ICatalogItem {
     name: string,
     type: "Рулонні штори" | "Вертикальні жазюзі" | "Горизонтальні жазюзі" | "День-Ніч"
     isInStock: boolean, //В наявності
@@ -11,13 +12,13 @@ interface ICatalogItem {
     collection: string,
     opacity: string,
     guarantee: string,
-    composition: string, //Состав
+    composition: string, //Склад
     maxWidth: string,
     originCountry: string,
     availableColors: string[]
 }
 
-type CatalogList = Array<ICatalogItem>
+export type CatalogList = Array<ICatalogItem>
 
 export default function CatalogList() {
     const catalogList: CatalogList = [
@@ -35,18 +36,17 @@ export default function CatalogList() {
             composition: "100% поліестер",
             maxWidth: "260 см",
             originCountry: "Китай",
-            availableColors: ["/assets/images/Фото_тканини_Бірма-біла.png", "", "", ""]
+            availableColors: ["/assets/images/Фото_тканини_Бірма-біла.png", "/assets/images/Фото_Бірма-бежева.png", "/assets/images/Фото_Бірма-сіра.png", "/assets/images/Фото_Бірма-сіра(1).png"]
         }
     ]
 
     return (
-        <ul className="">
-            <Image
-                alt="Photo"
-                src={catalogList[0].availableColors[0]}
-                width={250}
-                height={250}
-            />
+        <ul className="flex flex-wrap mt-[51px] px-11">
+            {catalogList.map((catalogItem) => (
+                <li key={catalogItem.name}>
+                    <CatalogItem catalogItem={catalogItem} />
+                </li>
+            ))}
         </ul>
     )
 }

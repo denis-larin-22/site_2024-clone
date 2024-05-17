@@ -7,6 +7,5 @@ export default function Home() {
       </div>
       <p className="text-2xl opacity-60">Soon...</p>
     </main>
-
   );
 }

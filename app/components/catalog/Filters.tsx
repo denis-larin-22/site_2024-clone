@@ -3,9 +3,8 @@
 import { Button } from "@nextui-org/react";
 import { useState, useEffect, useRef } from 'react';
 import { motion } from "framer-motion";
-import { Open_Sans } from "next/font/google";
+import { openSansFont } from "../ui/fonts";
 
-const openSansFont = Open_Sans({ subsets: ["latin"] })
 
 // Animation parameters (Framer Motion lib.)
 const containerAnimation = {
@@ -71,7 +70,7 @@ export function DropdownFilterSingle({ filterOption }: IProps) {
             {
                 isVisible &&
                 <motion.ul
-                    className={`${openSansFont.className} text-t-blue-dark absolute w-full bg-white p-[10px] rounded-2xl mt-[5px]`}
+                    className={`${openSansFont.className} text-t-blue-dark absolute z-50 w-full bg-white p-[10px] rounded-2xl mt-[5px]`}
                     variants={containerAnimation}
                     initial="hidden"
                     animate="visible"
@@ -147,7 +146,7 @@ export function DropdownFilterMultiple({ filterOption }: IProps) {
             </Button>
             {isVisible && (
                 <motion.ul
-                    className={`${openSansFont.className} absolute w-full bg-white p-[10px] rounded-2xl mt-[5px]`}
+                    className={`${openSansFont.className} absolute z-50 w-full bg-white p-[10px] rounded-2xl mt-[5px]`}
                     variants={containerAnimation}
                     initial="hidden"
                     animate="visible"
