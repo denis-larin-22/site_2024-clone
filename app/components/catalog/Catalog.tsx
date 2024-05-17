@@ -1,5 +1,6 @@
 'use client'
 
+import CatalogList from './CatalogList';
 import { IFilterOption, DropdownFilterSingle, DropdownFilterMultiple, FilterByPrice } from './Filters';
 
 export default function App() {
@@ -42,14 +43,17 @@ export default function App() {
     }
 
     return (
-        <div className="flex items-center gap-[10px]">
-            <DropdownFilterSingle filterOption={byMain} />
-            <DropdownFilterSingle filterOption={byDesign} />
-            <DropdownFilterSingle filterOption={byTransparency} />
-            <DropdownFilterMultiple filterOption={byCollection} />
-            <DropdownFilterMultiple filterOption={byColor} />
-            <FilterByPrice />
-        </div>
+        <>
+            <div className="flex items-center gap-[10px]">
+                <DropdownFilterSingle filterOption={byMain} />
+                <DropdownFilterSingle filterOption={byDesign} />
+                <DropdownFilterSingle filterOption={byTransparency} />
+                <DropdownFilterMultiple filterOption={byCollection} />
+                <DropdownFilterMultiple filterOption={byColor} />
+                <FilterByPrice />
+            </div>
+            <CatalogList />
+        </>
     );
 }
 

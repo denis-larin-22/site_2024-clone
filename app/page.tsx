@@ -1,5 +1,3 @@
-import PiramidLogo from "./components/assets/piramid-logo-icons";
-
 export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-center gap-5 text-white bg-gradient-to-tl from-blue-600 via-cyan-500 to-blue-800">

@@ -1,8 +1,8 @@
 'use client'
 
 import { useState } from "react";
-import { PiramidFullLogo, PiramidIconLogo } from "../assets/piramid-logo-icons";
 import { DayNight, HorizontalBlinds, RollerBlinds, VerticalBlinds } from "../assets/blinds-icons";
+import { PiramidFullLogo, PiramidIconLogo } from "../assets/piramid-logo-icons";
 
 type NavList = Array<{ text: string, icon: JSX.Element }>
 
