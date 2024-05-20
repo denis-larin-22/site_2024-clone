@@ -22,7 +22,7 @@ export default function Navigation() {
     };
 
     return (
-        <aside className="relative bg-white max-w-[364px] h-screen py-[42px] pr-7 rounded-tr-[42px] rounded-br-[42px]">
+        <aside className="relative bg-white max-w-[343px] h-screen py-[42px] pr-7 rounded-tr-[42px] rounded-br-[42px]">
             <div className=" flex items-center">
                 {!isCollapsed ?
                     <PiramidFullLogo className="ml-[42px]" />
@@ -49,7 +49,7 @@ export default function Navigation() {
                             {item.icon}
                         </span>
                         {!isCollapsed &&
-                            <span>
+                            <span className="whitespace-nowrap">
                                 {item.text}
                             </span>}
                     </button>

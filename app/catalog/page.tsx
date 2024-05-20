@@ -5,7 +5,7 @@ export default function CatalogPage() {
     return (
         <section className="h-screen w-screen bg-[#EEEEEE] flex flex-row overflow-hidden">
             <Navigation />
-            <div className="flex-grow overflow-y-auto overflow-x-hidden max-w-[1212px] px-3 py-[87px] mx-auto">
+            <div className="flex-grow overflow-y-auto overflow-x-hidden px-5 py-[87px] flex flex-col items-center">
                 <Catalog />
             </div>
         </section>

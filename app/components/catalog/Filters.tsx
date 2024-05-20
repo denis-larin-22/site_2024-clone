@@ -75,7 +75,7 @@ export function DropdownFilterSingle({ filterOption }: IProps) {
                     initial="hidden"
                     animate="visible"
                 >
-                    {filterOption.options.map(({ option }, index) => (
+                    {filterOption.options.map(({ option, optionIcon }, index) => (
                         <motion.li
                             key={index}
                             className={`${selectedOption === option ? 'bg-[#F6F5F8]' : 'bg-none'} cursor-pointer p-1 rounded-3xl text-sm hover:bg-[#F6F5F8] duration-150 flex justify-between`}
@@ -88,7 +88,10 @@ export function DropdownFilterSingle({ filterOption }: IProps) {
                                 setIsVisible(false);
                             }}
                         >
-                            {option}
+                            <p className="flex items-center gap-1">
+                                {optionIcon !== undefined ? optionIcon : null}
+                                {option}
+                            </p>
                             {selectedOption === option && <span>✔</span>}
                         </motion.li>
                     ))}
@@ -172,21 +175,20 @@ export function DropdownFilterMultiple({ filterOption }: IProps) {
 }
 
 // Filter by price
-export function FilterByPrice() {
+export function FilterByLevelPrice() {
     const [priceOrder, setPriceOrder] = useState<"fromHigher" | "fromLower">("fromLower")
     const isIconRotated = priceOrder === "fromHigher";
 
     return (
-        <Button
-            className="py-3 px-4 min-w-[184px] rounded-3xl bg-white text-base font-medium flex items-center justify-between gap-5"
+        <button
+            className="w-10 h-10 rounded-full bg-white flex items-center justify-center"
             onClick={() => {
                 const opositeOrder = priceOrder === "fromHigher" ? "fromLower" : "fromHigher";
                 setPriceOrder(opositeOrder);
             }}
         >
-            Ціна
             <Price isRotated={isIconRotated} />
-        </Button>
+        </button>
     )
 }
 
