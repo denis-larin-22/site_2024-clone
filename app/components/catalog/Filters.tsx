@@ -34,11 +34,16 @@ export interface IFilterOption {
 }
 
 interface IProps {
-    filterOption: IFilterOption
+    filterOption: IFilterOption,
+    styles?: {
+        buttonStyle?: string,
+        listStyle?: string,
+        listItemStyle?: string
+    }
 }
 
 // Dropdown list of options with single choice
-export function DropdownFilterSingle({ filterOption }: IProps) {
+export function DropdownFilterSingle({ filterOption, styles }: IProps) {
     const [isVisible, setIsVisible] = useState<boolean>(false);
     const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -61,7 +66,7 @@ export function DropdownFilterSingle({ filterOption }: IProps) {
     return (
         <div ref={dropdownRef} className="relative">
             <Button
-                className="py-3 px-4 min-w-[184px] rounded-3xl bg-white text-base text-t-blue-dark font-medium flex items-center justify-between gap-5"
+                className={`py-3 px-4 rounded-3xl bg-white text-sm text-t-blue-dark font-medium flex items-center justify-between gap-4 ${styles ? styles.buttonStyle : ''}`}
                 onClick={() => setIsVisible(!isVisible)}
             >
                 {optionTitle}
@@ -70,7 +75,7 @@ export function DropdownFilterSingle({ filterOption }: IProps) {
             {
                 isVisible &&
                 <motion.ul
-                    className={`${openSansFont.className} text-t-blue-dark absolute z-50 w-full bg-white p-[10px] rounded-2xl mt-[5px]`}
+                    className={`${openSansFont.className} text-t-blue-dark absolute z-50 mt-[5px] py-[6px] px-[5px] w-fit bg-white rounded-2xl flex flex-col gap-y-[2px] ${styles ? styles.listStyle : ''}`}
                     variants={containerAnimation}
                     initial="hidden"
                     animate="visible"
@@ -78,7 +83,7 @@ export function DropdownFilterSingle({ filterOption }: IProps) {
                     {filterOption.options.map(({ option, optionIcon }, index) => (
                         <motion.li
                             key={index}
-                            className={`${selectedOption === option ? 'bg-[#F6F5F8]' : 'bg-none'} cursor-pointer p-1 rounded-3xl text-sm hover:bg-[#F6F5F8] duration-150 flex justify-between`}
+                            className={`${selectedOption === option ? 'bg-t-pale' : 'bg-none'} h-7 px-2 cursor-pointer rounded-3xl text-sm hover:bg-t-pale duration-150 flex justify-between ${styles ? styles.listItemStyle : ''}`}
                             variants={itemAnimation}
                             onClick={() => {
                                 if (!filterOption.title) {
@@ -88,11 +93,10 @@ export function DropdownFilterSingle({ filterOption }: IProps) {
                                 setIsVisible(false);
                             }}
                         >
-                            <p className="flex items-center gap-1">
+                            <p className="flex items-center gap-1 text-sm font-normal">
                                 {optionIcon !== undefined ? optionIcon : null}
                                 {option}
                             </p>
-                            {selectedOption === option && <span>✔</span>}
                         </motion.li>
                     ))}
                 </motion.ul>
@@ -102,7 +106,7 @@ export function DropdownFilterSingle({ filterOption }: IProps) {
 }
 
 // Dropdown list of options with multiple choice
-export function DropdownFilterMultiple({ filterOption }: IProps) {
+export function DropdownFilterMultiple({ filterOption, styles }: IProps) {
     const [isVisible, setIsVisible] = useState<boolean>(false);
     const dropdownRef = useRef<HTMLDivElement>(null);
     const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
@@ -134,13 +138,13 @@ export function DropdownFilterMultiple({ filterOption }: IProps) {
     return (
         <div ref={dropdownRef} className="relative text-t-blue-dark">
             <Button
-                className="py-3 px-4 min-w-[184px] rounded-3xl bg-white text-base font-medium flex items-center justify-between gap-5"
+                className={`py-3 px-4 rounded-3xl bg-white text-sm font-medium flex items-center justify-between gap-4 ${styles ? styles.buttonStyle : ''}`}
                 onClick={() => setIsVisible(!isVisible)}
             >
                 <p className="relative">
                     {filterOption.title}
                     {selectedOptions.length !== 0 ?
-                        <span className="absolute top-0 -right-[18px] w-[17px] h-[17px] text-[13px] font-medium  text-white inline-flex items-center justify-center rounded-full bg-t-blue">{selectedOptions.length}</span>
+                        <span className="absolute -top-[6px] -right-4 w-[17px] h-[17px] text-[13px] font-medium  text-white inline-flex items-center justify-center rounded-full bg-t-blue">{selectedOptions.length}</span>
                         :
                         null
                     }
@@ -149,7 +153,7 @@ export function DropdownFilterMultiple({ filterOption }: IProps) {
             </Button>
             {isVisible && (
                 <motion.ul
-                    className={`${openSansFont.className} absolute z-50 w-full bg-white p-[10px] rounded-2xl mt-[5px]`}
+                    className={`${openSansFont.className} absolute z-50 w-fit bg-white p-[6px] rounded-2xl mt-[5px] flex flex-col gap-y-[2px] ${styles ? styles.listStyle : ''}`}
                     variants={containerAnimation}
                     initial="hidden"
                     animate="visible"
@@ -157,15 +161,14 @@ export function DropdownFilterMultiple({ filterOption }: IProps) {
                     {filterOption.options.map(({ option, optionIcon }, index) => (
                         <motion.li
                             key={index}
-                            className={`${selectedOptions.includes(option) ? 'bg-[#F6F5F8]' : 'bg-none'} cursor-pointer p-1 rounded-3xl text-sm hover:bg-[#F6F5F8] duration-150 flex justify-between`}
+                            className={`${selectedOptions.includes(option) ? 'bg-t-pale' : 'bg-none'} h-7 px-2 cursor-pointer p-1 rounded-3xl hover:bg-t-pale duration-150 flex justify-between ${styles ? styles.listItemStyle : ''}`}
                             variants={itemAnimation}
                             onClick={() => toggleOption(option)}
                         >
-                            <p className="flex items-center gap-2">
+                            <p className="text-nowrap flex items-center gap-x-[5px] text-sm font-normal">
                                 {optionIcon === undefined ? null : optionIcon}
                                 {option}
                             </p>
-                            {selectedOptions.includes(option) && <span>✔</span>}
                         </motion.li>
                     ))}
                 </motion.ul>

@@ -1,9 +1,8 @@
 export interface ICatalogItem {
     name: string,
     type: "Рулонні штори" | "Вертикальні жазюзі" | "Горизонтальні жазюзі" | "День-Ніч"
-    isInStock: "available" | "not-available" | "little-in-stock", //В наявності
-    isNew: boolean,
-    isPromotion: boolean, //Акция
+    isInStock: "виходить" | "в наявності", //В наявності
+    label: "Новинка" | "Розпродаж" | "Тканина тижня"
     fabricTexture: string, //Фактура ткании
     waterproofnessLevel: string, //Рівень водонепроникності
     collection: string,
@@ -12,7 +11,11 @@ export interface ICatalogItem {
     composition: string, //Склад
     maxWidth: string,
     originCountry: string,
-    availableColors: string[]
+    availableColors: string[],
+    price: string,
+    priceCategory: "1 категорія" | "2 категорія" | "3 категорія" | "4 категорія",
+    cashback?: boolean,
+    specialOffer?: string
 }
 
 export type CatalogList = Array<ICatalogItem>
@@ -20,11 +23,10 @@ export type CatalogList = Array<ICatalogItem>
 // Example list for rendering
 export const catalogList: CatalogList = [
     {
-        name: "Бірма біла",
+        name: "Арома бежева",
         type: "Рулонні штори",
-        isInStock: "available",
-        isNew: true,
-        isPromotion: true,
+        isInStock: "виходить",
+        label: "Розпродаж",
         fabricTexture: "Фактурна",
         waterproofnessLevel: "Фактурна",
         collection: "Бірма",
@@ -33,110 +35,121 @@ export const catalogList: CatalogList = [
         composition: "100% поліестер",
         maxWidth: "260 см",
         originCountry: "Китай",
-        availableColors: ["/assets/images/Фото_тканини_Бірма-біла.png", "/assets/images/Фото_Бірма-бежева.png", "/assets/images/Фото_Бірма-сіра.png", "/assets/images/Фото_Бірма-сіра(1).png"]
+        availableColors: ["/assets/images/Фото_Арома_бежева.png", "/assets/images/Фото_Бірма-бежева.png", "/assets/images/Фото_Бірма-сіра.png", "/assets/images/Фото_Бірма-сіра(1).png"],
+        price: "1000 грн.",
+        priceCategory: "2 категорія",
+        cashback: true,
+        specialOffer: "Акція 20%"
+    },
+    {
+        name: "Бірма біла",
+        type: "Рулонні штори",
+        isInStock: "в наявності",
+        label: "Новинка",
+        fabricTexture: "Фактурна",
+        waterproofnessLevel: "Фактурна",
+        collection: "АЛЬМЕРІЯ",
+        opacity: "100%",
+        guarantee: "1 рік",
+        composition: "100% поліестер",
+        maxWidth: "260 см",
+        originCountry: "Китай",
+        availableColors: ["/assets/images/Фото_тканини_Бірма-біла.png", "/assets/images/Фото_Бірма-бежева.png", "/assets/images/Фото_Бірма-сіра.png", "/assets/images/Фото_Бірма-сіра(1).png"],
+        price: "1000 грн.",
+        priceCategory: "3 категорія"
     },
     {
         name: "Альмерія чорна",
         type: "Рулонні штори",
-        isInStock: "available",
-        isNew: true,
-        isPromotion: true,
+        isInStock: "в наявності",
+        label: "Розпродаж",
         fabricTexture: "Фактурна",
         waterproofnessLevel: "Фактурна",
-        collection: "Бірма",
+        collection: "АЛЬМЕРІЯ",
         opacity: "100%",
         guarantee: "1 рік",
         composition: "100% поліестер",
         maxWidth: "260 см",
         originCountry: "Китай",
-        availableColors: ["/assets/images/Фото_Альмерія-чорна.png", "/assets/images/Фото_Бірма-бежева.png", "/assets/images/Фото_Бірма-сіра.png", "/assets/images/Фото_Бірма-сіра(1).png"]
-    },
-    {
-        name: "Арома бежева",
-        type: "Рулонні штори",
-        isInStock: "available",
-        isNew: true,
-        isPromotion: true,
-        fabricTexture: "Фактурна",
-        waterproofnessLevel: "Фактурна",
-        collection: "Бірма",
-        opacity: "100%",
-        guarantee: "1 рік",
-        composition: "100% поліестер",
-        maxWidth: "260 см",
-        originCountry: "Китай",
-        availableColors: ["/assets/images/Фото_Арома_бежева.png", "/assets/images/Фото_Бірма-бежева.png", "/assets/images/Фото_Бірма-сіра.png", "/assets/images/Фото_Бірма-сіра(1).png"]
+        availableColors: ["/assets/images/Фото_Альмерія-чорна.png", "/assets/images/Фото_Бірма-бежева.png", "/assets/images/Фото_Бірма-сіра.png", "/assets/images/Фото_Бірма-сіра(1).png"],
+        price: "1000 грн.",
+        priceCategory: "2 категорія"
     },
     {
         name: "Арома золота",
         type: "Рулонні штори",
-        isInStock: "available",
-        isNew: true,
-        isPromotion: true,
+        isInStock: "виходить",
+        label: "Тканина тижня",
         fabricTexture: "Фактурна",
         waterproofnessLevel: "Фактурна",
-        collection: "Бірма",
+        collection: "АРОМА",
         opacity: "100%",
         guarantee: "1 рік",
         composition: "100% поліестер",
         maxWidth: "260 см",
         originCountry: "Китай",
-        availableColors: ["/assets/images/Фото_Арома-золота.png", "/assets/images/Фото_Бірма-бежева.png", "/assets/images/Фото_Бірма-сіра.png", "/assets/images/Фото_Бірма-сіра(1).png"]
+        availableColors: ["/assets/images/Фото_Арома-золота.png", "/assets/images/Фото_Бірма-бежева.png", "/assets/images/Фото_Бірма-сіра.png", "/assets/images/Фото_Бірма-сіра(1).png"],
+        price: "1000 грн.",
+        priceCategory: "2 категорія",
+        specialOffer: "Акція 20%"
     },
     {
         name: "Бірма бежева",
         type: "Рулонні штори",
-        isInStock: "available",
-        isNew: true,
-        isPromotion: true,
+        isInStock: "в наявності",
+        label: "Новинка",
         fabricTexture: "Фактурна",
         waterproofnessLevel: "Фактурна",
-        collection: "Бірма",
+        collection: "АЛЬМЕРІЯ",
         opacity: "100%",
         guarantee: "1 рік",
         composition: "100% поліестер",
         maxWidth: "260 см",
         originCountry: "Китай",
-        availableColors: ["/assets/images/Фото_Бірма_бежева.png", "/assets/images/Фото_Бірма-бежева.png", "/assets/images/Фото_Бірма-сіра.png", "/assets/images/Фото_Бірма-сіра(1).png"]
+        availableColors: ["/assets/images/Фото_Бірма_бежева.png", "/assets/images/Фото_Бірма-бежева.png", "/assets/images/Фото_Бірма-сіра.png", "/assets/images/Фото_Бірма-сіра(1).png"],
+        price: "1000 грн.",
+        priceCategory: "1 категорія"
     },
     {
         name: "Бірма біла",
         type: "Рулонні штори",
-        isInStock: "little-in-stock",
-        isNew: true,
-        isPromotion: true,
+        isInStock: "в наявності",
+        label: "Новинка",
         fabricTexture: "Фактурна",
         waterproofnessLevel: "Фактурна",
-        collection: "Бірма",
+        collection: "АРОМА",
         opacity: "100%",
         guarantee: "1 рік",
         composition: "100% поліестер",
         maxWidth: "260 см",
         originCountry: "Китай",
-        availableColors: ["/assets/images/Фото_тканини_Бірма-біла.png", "/assets/images/Фото_Бірма-бежева.png", "/assets/images/Фото_Бірма-сіра.png", "/assets/images/Фото_Бірма-сіра(1).png"]
+        availableColors: ["/assets/images/Фото_тканини_Бірма-біла.png", "/assets/images/Фото_Бірма-бежева.png", "/assets/images/Фото_Бірма-сіра.png", "/assets/images/Фото_Бірма-сіра(1).png"],
+        price: "1000 грн.",
+        priceCategory: "2 категорія"
     },
     {
         name: "Бірма сіра",
         type: "Рулонні штори",
-        isInStock: "available",
-        isNew: true,
-        isPromotion: true,
+        isInStock: "в наявності",
+        label: "Новинка",
         fabricTexture: "Фактурна",
         waterproofnessLevel: "Фактурна",
-        collection: "Бірма",
+        collection: "АЛЬМЕРІЯ",
         opacity: "100%",
         guarantee: "1 рік",
         composition: "100% поліестер",
         maxWidth: "260 см",
         originCountry: "Китай",
-        availableColors: ["/assets/images/Фото_Бірма_сіра.png", "/assets/images/Фото_Бірма-бежева.png", "/assets/images/Фото_Бірма-сіра.png", "/assets/images/Фото_Бірма-сіра(1).png"]
+        availableColors: ["/assets/images/Фото_Бірма_сіра.png", "/assets/images/Фото_Бірма-бежева.png", "/assets/images/Фото_Бірма-сіра.png", "/assets/images/Фото_Бірма-сіра(1).png"],
+        price: "1000 грн.",
+        priceCategory: "2 категорія",
+        specialOffer: "Акція 20%"
     },
     {
         name: "Бірма бежева",
         type: "Рулонні штори",
-        isInStock: "available",
-        isNew: true,
-        isPromotion: true,
+        isInStock: "в наявності",
+        label: "Розпродаж",
         fabricTexture: "Фактурна",
         waterproofnessLevel: "Фактурна",
         collection: "Бірма",
@@ -145,30 +158,34 @@ export const catalogList: CatalogList = [
         composition: "100% поліестер",
         maxWidth: "260 см",
         originCountry: "Китай",
-        availableColors: ["/assets/images/Фото_Бірма_бежева.png", "/assets/images/Фото_Бірма-бежева.png", "/assets/images/Фото_Бірма-сіра.png", "/assets/images/Фото_Бірма-сіра(1).png"]
+        availableColors: ["/assets/images/Фото_Бірма_бежева.png", "/assets/images/Фото_Бірма-бежева.png", "/assets/images/Фото_Бірма-сіра.png", "/assets/images/Фото_Бірма-сіра(1).png"],
+        price: "1000 грн.",
+        priceCategory: "2 категорія"
     },
     {
         name: "Арома бежева",
         type: "Рулонні штори",
-        isInStock: "not-available",
-        isNew: true,
-        isPromotion: true,
+        isInStock: "в наявності",
+        label: "Розпродаж",
         fabricTexture: "Фактурна",
         waterproofnessLevel: "Фактурна",
-        collection: "Бірма",
+        collection: "АРОМА",
         opacity: "100%",
         guarantee: "1 рік",
         composition: "100% поліестер",
         maxWidth: "260 см",
         originCountry: "Китай",
-        availableColors: ["/assets/images/Фото_Арома_бежева.png", "/assets/images/Фото_Бірма-бежева.png", "/assets/images/Фото_Бірма-сіра.png", "/assets/images/Фото_Бірма-сіра(1).png"]
+        availableColors: ["/assets/images/Фото_Арома_бежева.png", "/assets/images/Фото_Бірма-бежева.png", "/assets/images/Фото_Бірма-сіра.png", "/assets/images/Фото_Бірма-сіра(1).png"],
+        price: "1000 грн.",
+        priceCategory: "2 категорія",
+        cashback: true,
+        specialOffer: "Акція 20%"
     },
     {
         name: "Бірма біла",
         type: "Рулонні штори",
-        isInStock: "little-in-stock",
-        isNew: true,
-        isPromotion: true,
+        isInStock: "виходить",
+        label: "Тканина тижня",
         fabricTexture: "Фактурна",
         waterproofnessLevel: "Фактурна",
         collection: "Бірма",
@@ -177,30 +194,33 @@ export const catalogList: CatalogList = [
         composition: "100% поліестер",
         maxWidth: "260 см",
         originCountry: "Китай",
-        availableColors: ["/assets/images/Фото_тканини_Бірма-біла.png", "/assets/images/Фото_Бірма-бежева.png", "/assets/images/Фото_Бірма-сіра.png", "/assets/images/Фото_Бірма-сіра(1).png"]
+        availableColors: ["/assets/images/Фото_тканини_Бірма-біла.png", "/assets/images/Фото_Бірма-бежева.png", "/assets/images/Фото_Бірма-сіра.png", "/assets/images/Фото_Бірма-сіра(1).png"],
+        price: "1000 грн.",
+        priceCategory: "4 категорія"
     },
     {
         name: "Бірма біла",
         type: "Рулонні штори",
-        isInStock: "available",
-        isNew: true,
-        isPromotion: true,
+        isInStock: "в наявності",
+        label: "Новинка",
         fabricTexture: "Фактурна",
         waterproofnessLevel: "Фактурна",
-        collection: "Бірма",
+        collection: "АЛЬМЕРІЯ",
         opacity: "100%",
         guarantee: "1 рік",
         composition: "100% поліестер",
         maxWidth: "260 см",
         originCountry: "Китай",
-        availableColors: ["/assets/images/Фото_тканини_Бірма-біла.png", "/assets/images/Фото_Бірма-бежева.png", "/assets/images/Фото_Бірма-сіра.png", "/assets/images/Фото_Бірма-сіра(1).png"]
+        availableColors: ["/assets/images/Фото_тканини_Бірма-біла.png", "/assets/images/Фото_Бірма-бежева.png", "/assets/images/Фото_Бірма-сіра.png", "/assets/images/Фото_Бірма-сіра(1).png"],
+        price: "1000 грн.",
+        priceCategory: "2 категорія",
+        cashback: true
     },
     {
         name: "Бірма сіра",
         type: "Рулонні штори",
-        isInStock: "available",
-        isNew: true,
-        isPromotion: true,
+        isInStock: "в наявності",
+        label: "Розпродаж",
         fabricTexture: "Фактурна",
         waterproofnessLevel: "Фактурна",
         collection: "Бірма",
@@ -209,6 +229,8 @@ export const catalogList: CatalogList = [
         composition: "100% поліестер",
         maxWidth: "260 см",
         originCountry: "Китай",
-        availableColors: ["/assets/images/Фото_Бірма_сіра.png", "/assets/images/Фото_Бірма-бежева.png", "/assets/images/Фото_Бірма-сіра.png", "/assets/images/Фото_Бірма-сіра(1).png"]
+        availableColors: ["/assets/images/Фото_Бірма_сіра.png", "/assets/images/Фото_Бірма-бежева.png", "/assets/images/Фото_Бірма-сіра.png", "/assets/images/Фото_Бірма-сіра(1).png"],
+        price: "1000 грн.",
+        priceCategory: "1 категорія"
     },
 ]

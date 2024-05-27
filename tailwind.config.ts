@@ -27,9 +27,10 @@ const config: Config = {
         't-blue-dark': '#0E0050',
         't-blue': '#1000E5',
         't-gray': '#BFC1CA',
+        't-gray-text': '#B3B5BE',
         't-green': '#1EBF91',
-        't-red': '#FF0A0A'
-
+        't-red': '#FF0A0A',
+        't-pale': '#F6F5F8'
       },
     },
   },

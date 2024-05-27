@@ -1,8 +1,10 @@
 'use client'
 
 import { useState } from "react";
-import { DayNight, HorizontalBlinds, RollerBlinds, VerticalBlinds } from "../assets/blinds-icons";
+import { DayNight, HorizontalBlinds, RollerBlinds, VerticalBlinds } from "../assets/icons";
 import { PiramidFullLogo, PiramidIconLogo } from "../assets/piramid-logo-icons";
+import { AnimatePresence, motion } from "framer-motion";
+import Link from "next/link";
 
 type NavList = Array<{ text: string, icon: JSX.Element }>
 
@@ -22,13 +24,15 @@ export default function Navigation() {
     };
 
     return (
-        <aside className="relative bg-white max-w-[343px] h-screen py-[42px] pr-7 rounded-tr-[42px] rounded-br-[42px]">
-            <div className=" flex items-center">
-                {!isCollapsed ?
-                    <PiramidFullLogo className="ml-[42px]" />
-                    :
-                    <PiramidIconLogo className="ml-[26px] mr-2" />
-                }
+        <aside className={`relative bg-[#FAFAFA] ${isCollapsed ? 'max-w-[121px] pr-6' : 'max-w-[343px] pr-5'}  h-screen py-[42px] pl-6 rounded-tr-[42px] rounded-br-[42px] duration-500`}>
+            <div className="flex items-center">
+                <Link href={"/"}>
+                    {!isCollapsed ?
+                        <PiramidFullLogo className="ml-[18px] self-start" />
+                        :
+                        <PiramidIconLogo />
+                    }
+                </Link>
                 <button
                     className="inline-flex w-9 h-9 items-center justify-center absolute -right-4 bg-white rounded-full"
                     onClick={() => setIsCollapsed(!isCollapsed)}
@@ -38,23 +42,31 @@ export default function Navigation() {
                     </svg>
                 </button>
             </div>
-            <nav className="pt-52 flex flex-col items-start gap-10">
+            <nav className="mt-52 flex flex-col items-start">
                 {list.map((item, index) => (
                     <button
                         key={index}
                         onClick={() => handleClick(index)}
-                        className={`group relative w-fit text-start pl-10 flex items-center gap-5 text-xl font-bold duration-200 ${activeIndex === index ? ' text-t-blue before:inline-block before:h-[39px] before:w-[22px] before:bg-t-blue before:rounded-xl before:absolute before:-left-4' : 'text-t-gray hover:text-t-blue '}`}
+                        className={`group relative h-[60px] w-full p-[15px] rounded-xl text-lg font-bold ${activeIndex === index ? 'text-t-blue bg-white' : 'text-t-gray-text hover:text-t-blue'} flex items-center gap-x-[14px] hover:bg-white duration-150`}
                     >
-                        <span className={`${activeIndex === index ? 'opacity-100 grayscale-0' : 'opacity-25 grayscale group-hover:opacity-100 group-hover:grayscale-0 group-hover:scale-110'} duration-200`}>
+                        <span className={activeIndex === index ? 'absolute top-1/2 -left-10 -translate-y-1/2 inline-block w-[22px] h-[39px] rounded-xl bg-t-blue' : 'hidden'}></span>
+                        <span className={`${activeIndex === index ? 'opacity-100 grayscale-0' : 'opacity-35 grayscale group-hover:opacity-100 group-hover:grayscale-0 group-hover:scale-110'} duration-200`}>
                             {item.icon}
                         </span>
-                        {!isCollapsed &&
-                            <span className="whitespace-nowrap">
-                                {item.text}
-                            </span>}
+                        <AnimatePresence>
+                            {!isCollapsed &&
+                                <motion.span
+                                    initial={{ opacity: 0, x: '-25px' }}
+                                    animate={{ opacity: 1, x: 0 }}
+                                    exit={{ opacity: 0, x: '-10px' }}
+                                    className="whitespace-nowrap"
+                                >
+                                    {item.text}
+                                </motion.span>}
+                        </AnimatePresence>
                     </button>
                 ))}
             </nav>
-        </aside>
+        </aside >
     )
 }

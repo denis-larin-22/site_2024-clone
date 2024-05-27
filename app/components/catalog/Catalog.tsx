@@ -63,11 +63,11 @@ export default function App() {
     return (
         <>
             <div className="flex items-center gap-[10px]">
-                <DropdownFilterSingle filterOption={byMain} />
+                <DropdownFilterSingle filterOption={byMain} styles={{ listStyle: 'w-full' }} />
+                <DropdownFilterMultiple filterOption={byColor} />
                 <DropdownFilterSingle filterOption={byDesign} />
                 <DropdownFilterSingle filterOption={byOpacity} />
                 <DropdownFilterMultiple filterOption={byCollection} />
-                <DropdownFilterMultiple filterOption={byColor} />
                 <DropdownFilterMultiple filterOption={byPrice} />
                 <FilterByLevelPrice />
             </div>
