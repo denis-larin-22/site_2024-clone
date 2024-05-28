@@ -1,7 +1,7 @@
 import CatalogList from './CatalogList';
 import { IFilterOption, DropdownFilterSingle, DropdownFilterMultiple, FilterByLevelPrice } from './Filters';
 
-export default function App() {
+export default function Catalog() {
     // Filter options
     const byMain: IFilterOption = {
         options: [{ option: "За популярністю" }, { option: "За акціями" }, { option: "За новинками" }, { option: "За алфавітом" }],

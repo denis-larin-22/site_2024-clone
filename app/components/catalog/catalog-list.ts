@@ -184,7 +184,7 @@ export const catalogList: CatalogList = [
     {
         name: "Бірма біла",
         type: "Рулонні штори",
-        isInStock: "виходить",
+        isInStock: "в наявності",
         label: "Тканина тижня",
         fabricTexture: "Фактурна",
         waterproofnessLevel: "Фактурна",
