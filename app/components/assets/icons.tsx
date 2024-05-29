@@ -56,16 +56,6 @@ export const DayNight = () => {
 };
 
 // Catalog card icons
-export function CloseButton({ className, btnHandler }: { className?: string, btnHandler: () => void }) {
-    return (
-        <button className={`w-fit h-fit ${className}`} onClick={btnHandler}>
-            <svg width="53" height="53" viewBox="0 0 53 53" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M39.1641 13.0544L13.0551 39.1634" stroke="#10005B" strokeWidth="4" strokeLinecap="round" />
-                <path d="M39.1641 39.1636L13.0551 13.0546" stroke="#10005B" strokeWidth="4" strokeLinecap="round" />
-            </svg>
-        </button>
-    )
-}
 
 export function FireIcon({ className }: { className?: string }) {
     return (
