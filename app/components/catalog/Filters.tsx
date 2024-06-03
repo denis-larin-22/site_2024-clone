@@ -144,7 +144,7 @@ export function DropdownFilterMultiple({ filterOption, styles }: IProps) {
                 <p className="relative">
                     {filterOption.title}
                     {selectedOptions.length !== 0 ?
-                        <span className="absolute -top-[6px] -right-4 w-[17px] h-[17px] text-[13px] font-medium  text-white inline-flex items-center justify-center rounded-full bg-t-blue">{selectedOptions.length}</span>
+                        <span className="absolute -bottom-[6px] tablet:-top-[6px] -right-4 w-[17px] h-[17px] text-[13px] font-medium  text-white inline-flex items-center justify-center rounded-full bg-t-blue">{selectedOptions.length}</span>
                         :
                         null
                     }

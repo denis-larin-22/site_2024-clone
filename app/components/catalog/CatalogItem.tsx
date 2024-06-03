@@ -78,7 +78,7 @@ export default function CatalogItem({ catalogItem }: IProps) {
             </button>
 
             <Modal
-                backdrop="opaque"
+                backdrop="blur"
                 classNames={{
                     wrapper: "h-fit my-auto",
                     base: "relative max-w-[998px] min-h-[523px] p-10 bg-[#FAFAFA] text-t-blue-dark",

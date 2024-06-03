@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { DayNight, HorizontalBlinds, RollerBlinds, VerticalBlinds } from "../assets/icons";
 import { PiramidFullLogo, PiramidIconLogo } from "../assets/piramid-logo-icons";
 import { AnimatePresence, motion } from "framer-motion";
@@ -19,6 +19,21 @@ export default function Navigation() {
         { text: "День-Ніч", icon: <DayNight /> }
     ];
 
+    const handleResize = useCallback(() => {
+        if (window.innerWidth <= 1366) {
+            setIsCollapsed(true);
+        }
+    }, []);
+
+    useEffect(() => {
+        window.addEventListener("resize", handleResize);
+        handleResize(); // Initial check
+
+        return () => {
+            window.removeEventListener("resize", handleResize);
+        };
+    }, [handleResize]);
+
     const handleClick = (index: number) => {
         setActiveIndex(index);
     };
@@ -34,7 +49,7 @@ export default function Navigation() {
                     }
                 </Link>
                 <button
-                    className="inline-flex w-9 h-9 items-center justify-center absolute -right-4 bg-white rounded-full"
+                    className="hidden tablet:inline-flex w-9 h-9 items-center justify-center absolute -right-4 bg-white rounded-full"
                     onClick={() => setIsCollapsed(!isCollapsed)}
                 >
                     <svg xmlns="http://www.w3.org/2000/svg" width="12" height="18" viewBox="0 0 12 18" fill="none" className={isCollapsed ? "rotate-180" : ""}>

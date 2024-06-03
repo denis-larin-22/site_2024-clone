@@ -41,7 +41,7 @@ export default function Catalog() {
         options: [{ option: "1 категорія" }, { option: "2 категорія" }, { option: "3 категорія" }, { option: "4 категорія" }]
     }
     const byColor: IFilterOption = {
-        title: "Базовий колір",
+        title: "Колір",
         options: [
             { option: "Бежевий", optionIcon: <span className='inline-block w-5 h-5 rounded-full bg-[#FAE3B7]'></span> },
             { option: "Білий", optionIcon: <span className='inline-block w-5 h-5 rounded-full bg-[#FFFFFF] border-1 border-t-blue'></span> },
