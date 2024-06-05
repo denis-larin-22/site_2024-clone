@@ -5,3 +5,37 @@
 body {
     font-size: 16px;
 }
+
+@layer components {
+    .hide-scrollbar {
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+        /* Internet Explorer 10+ */
+    }
+
+    .hide-scrollbar::-webkit-scrollbar {
+        display: none;
+        /* Safari and Chrome */
+    }
+
+    /* Scroll-bar settings*/
+    ::-webkit-scrollbar {
+        width: 5px;
+        border-radius: 50%;
+    }
+
+    ::-webkit-scrollbar-track {
+        background-color: #AEB1BA20;
+        border-radius: 10px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: #AEB1BA40;
+        border-radius: 10px;
+        cursor: pointer;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: #AEB1BA50;
+    }
+}

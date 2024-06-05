@@ -19,6 +19,7 @@ const config: Config = {
       },
       screens: {
         'tablet': '1367px',
+        'mobile': '450px'
       },
       backgroundImage: {
         "t-blue-green-gradient": "linear-gradient(270deg, rgba(8,255,184,1) 50%, rgba(11,45,226,1) 100%)",

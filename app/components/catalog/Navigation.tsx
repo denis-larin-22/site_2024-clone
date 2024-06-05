@@ -42,10 +42,10 @@ export default function Navigation() {
         <aside className={`relative bg-[#FAFAFA] ${isCollapsed ? 'max-w-[121px] pr-6' : 'max-w-[343px] pr-5'}  h-screen py-[42px] pl-6 rounded-tr-[42px] rounded-br-[42px] duration-500`}>
             <div className="flex items-center">
                 <Link href={"/"}>
-                    {!isCollapsed ?
-                        <PiramidFullLogo className="ml-[18px] self-start" />
-                        :
+                    {isCollapsed ?
                         <PiramidIconLogo />
+                        :
+                        <PiramidFullLogo className="hidden tablet:inline ml-[18px] self-start" />
                     }
                 </Link>
                 <button
@@ -74,7 +74,7 @@ export default function Navigation() {
                                     initial={{ opacity: 0, x: '-25px' }}
                                     animate={{ opacity: 1, x: 0 }}
                                     exit={{ opacity: 0, x: '-10px' }}
-                                    className="whitespace-nowrap"
+                                    className="hidden tablet:inline whitespace-nowrap"
                                 >
                                     {item.text}
                                 </motion.span>}

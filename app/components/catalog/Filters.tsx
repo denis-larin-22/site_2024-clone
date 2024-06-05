@@ -138,7 +138,7 @@ export function DropdownFilterMultiple({ filterOption, styles }: IProps) {
     return (
         <div ref={dropdownRef} className="relative text-t-blue-dark">
             <Button
-                className={`py-3 px-4 rounded-3xl bg-white text-sm font-medium flex items-center justify-between gap-4 ${styles ? styles.buttonStyle : ''}`}
+                className={`py-3 px-4 rounded-3xl text-t-blue-dark bg-white text-sm font-medium flex items-center justify-between gap-4 ${styles ? styles.buttonStyle : ''}`}
                 onClick={() => setIsVisible(!isVisible)}
             >
                 <p className="relative">
@@ -153,7 +153,7 @@ export function DropdownFilterMultiple({ filterOption, styles }: IProps) {
             </Button>
             {isVisible && (
                 <motion.ul
-                    className={`${openSansFont.className} absolute z-50 w-fit bg-white p-[6px] rounded-2xl mt-[5px] flex flex-col gap-y-[2px] ${styles ? styles.listStyle : ''}`}
+                    className={`${openSansFont.className} absolute z-50 w-fit max-h-[450px] overflow-y-auto bg-white p-[6px] rounded-2xl mt-[5px] flex flex-col gap-y-[2px] ${styles ? styles.listStyle : ''}`}
                     variants={containerAnimation}
                     initial="hidden"
                     animate="visible"

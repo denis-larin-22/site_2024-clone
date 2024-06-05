@@ -1,3 +1,4 @@
+// import '../../globals.css';
 import CatalogList from './CatalogList';
 import { IFilterOption, DropdownFilterSingle, DropdownFilterMultiple, FilterByLevelPrice } from './Filters';
 
@@ -62,8 +63,8 @@ export default function Catalog() {
 
     return (
         <>
-            <div className="flex items-center gap-[10px]">
-                <DropdownFilterSingle filterOption={byMain} styles={{ listStyle: 'w-full' }} />
+            <div className="flex items-start justify-normal xl:justify-center gap-[10px] w-full min-h-[500px] pl-[60px] xl:pl-0 overflow-x-auto hide-scrollbar">
+                <DropdownFilterSingle filterOption={byMain} styles={{ listStyle: "w-full" }} />
                 <DropdownFilterMultiple filterOption={byColor} />
                 <DropdownFilterSingle filterOption={byDesign} />
                 <DropdownFilterSingle filterOption={byOpacity} />
