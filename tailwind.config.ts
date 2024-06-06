@@ -36,6 +36,10 @@ const config: Config = {
         't-red': '#FF0A0A',
         't-pale': '#F6F5F8',
       },
+      fontSize: {
+        '3xs': '8px',
+        'xxs': '10px',
+      }
     },
   },
   darkMode: "class",

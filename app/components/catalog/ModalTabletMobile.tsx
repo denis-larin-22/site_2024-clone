@@ -11,9 +11,9 @@ interface IProps {
     onModalCloseHandler: () => void
 }
 
-export function ModalTablet({ catalogItem, onModalCloseHandler }: IProps) {
+export function ModalTabletMobile({ catalogItem, onModalCloseHandler }: IProps) {
     // Catalog item properties
-    const { availableColors, collection, composition, fabricTexture, guarantee, isInStock, maxWidth, name, opacity, originCountry, type, waterproofnessLevel, priceCategory, label, cashback, specialOffer } = catalogItem;
+    const { availableColors, collection, composition, fabricTexture, guarantee, isInStock, maxWidth, name, opacity, type, waterproofnessLevel, label, specialOffer } = catalogItem;
     // Default card image (first image from available ones)
     const [selectedColor, setSelectedColor] = useState<string>(availableColors[0]);
 
@@ -28,18 +28,25 @@ export function ModalTablet({ catalogItem, onModalCloseHandler }: IProps) {
 
     return (
         <>
-            <CloseArrowButton btnHandler={onModalCloseHandler} className="absolute left-10 top-12" />
+            <CloseArrowButton btnHandler={onModalCloseHandler} className="absolute left-5 mobile:left-10 top-3 mobile:top-12" />
+            <Image
+                alt="Piramid logo"
+                src={"/assets/images/full_logo_small.svg"}
+                width={129}
+                height={25}
+                className="inline mobile:hidden absolute top-[15px] right-5"
+            />
 
             <Image
                 src={selectedColor}
                 alt={`Фото варінта тканини для ${name}`}
                 width={1024}
                 height={1366}
-                className="absolute -z-20 top-0 left-0 w-full h-full object-cover"
+                className="absolute -z-20 top-0 left-0 w-full h-[60vh] mobile:h-full object-cover"
             />
 
-            <div className="absolute bottom-0 left-0 right-0 p-9">
-                <ul className="flex gap-2.5">
+            <div className="absolute bottom-0 left-0 right-0 p-0 mobile:p-9">
+                <ul className="flex gap-2.5 pl-5 mobile:pl-0">
                     {availableColors.map((color, index) => (
                         <li
                             key={index}
@@ -59,16 +66,16 @@ export function ModalTablet({ catalogItem, onModalCloseHandler }: IProps) {
                     ))}
                 </ul>
 
-                <section className="p-10 mt-5 rounded-2xl bg-[#FAFAFA] text-t-blue-dark">
+                <section className="p-9 mobile:p-10 mt-5 rounded-2xl bg-[#FAFAFA] text-t-blue-dark">
                     <div>
                         <div className={`${openSansFont.className} flex items-center justify-between`}>
                             <p className="text-[#AEB1BA] text-xs">{type.toUpperCase()} <span className="text-t-blue-dark">/</span> {collection.toUpperCase()}</p>
-                            <p className={`${isInStock === "в наявності" ? "text-t-green" : "text-[#FF4242]"}`}>{isInStock}</p>
+                            <p className={`${isInStock === "в наявності" ? "text-t-green" : "text-[#FF4242]"} text-sm`}>{isInStock}</p>
                         </div>
-                        <h5 className="text-[32px] mt-3 mb-8">{name}</h5>
+                        <h5 className="text-[32px] mt-3 mb-5 mobile:mb-8">{name}</h5>
                         <div className="w-full flex items-center justify-between">
                             <div className="flex items-center gap-[15px]">
-                                {specialOffer === undefined ? null : <p className="relative w-[113px] py-1 px-3 flex items-center justify-end text-xs font-bold text-[#F79D15] bg-[#FFEFD1] rounded-full">
+                                {specialOffer === undefined ? null : <p className="relative w-[113px] h-[25px] py-1 px-3 flex items-center justify-end text-xs font-bold text-[#F79D15] bg-[#FFEFD1] rounded-full">
                                     <FireIcon className="absolute left-[6px] bottom-1" />
                                     {specialOffer}
                                 </p>}
@@ -83,10 +90,10 @@ export function ModalTablet({ catalogItem, onModalCloseHandler }: IProps) {
                         </div>
                     </div>
 
-                    <div className={`${openSansFont.className} text-lg font-normal mt-11`}>
-                        <p className="inline-block w-full pb-5 mb-5 border-b-1 border-[#DDE0E9]">Технічна інформація</p>
+                    <div className={`${openSansFont.className} text-base mobile:text-lg font-normal mt-10 mobile:mt-11`}>
+                        <p className="inline-block w-full pb-[14px] mobile:pb-5 mb-4 mobile:mb-5 border-b-1 border-[#DDE0E9]">Технічна інформація</p>
 
-                        <ul className="text-lg grid grid-cols-2 sm:grid-cols-3 gap-x-2 gap-y-[30px]">
+                        <ul className="text-base mobile:text-lg grid grid-cols-2 sm:grid-cols-3 gap-x-2 gap-y-[23px] mobile:gap-y-[30px]">
                             {technicalInformation.map((infoItem, index) => (
                                 <li key={index}>
                                     <p>{infoItem.item}</p>
@@ -103,7 +110,7 @@ export function ModalTablet({ catalogItem, onModalCloseHandler }: IProps) {
 
 function CloseArrowButton({ className, btnHandler }: { className?: string, iconColor?: string, btnHandler: () => void }) {
     return (
-        <button className={`px-4 py-1 bg-t-blue rounded-2xl max-w-fit flex items-center gap-x-[13px] text-white ${className}`} onClick={btnHandler}>
+        <button className={`px-4 py-1 bg-t-blue rounded-2xl max-w-fit flex items-stretch gap-x-[13px] text-sm text-white ${className}`} onClick={btnHandler}>
             <svg width="24" height="19" viewBox="0 0 24 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M22.9995 9.48293L0.998356 9.48468M0.998356 9.48468L8.77653 17.2629M0.998356 9.48468L8.77653 1.70651" stroke="#F6F5F8" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
             </svg>

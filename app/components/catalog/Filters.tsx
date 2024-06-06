@@ -70,7 +70,7 @@ export function DropdownFilterSingle({ filterOption, styles }: IProps) {
                 onClick={() => setIsVisible(!isVisible)}
             >
                 {optionTitle}
-                <Arrow isOpen={isVisible} />
+                <ArrowIcon isOpen={isVisible} />
             </Button>
             {
                 isVisible &&
@@ -149,7 +149,7 @@ export function DropdownFilterMultiple({ filterOption, styles }: IProps) {
                         null
                     }
                 </p>
-                <Arrow isOpen={isVisible} />
+                <ArrowIcon isOpen={isVisible} />
             </Button>
             {isVisible && (
                 <motion.ul
@@ -190,15 +190,14 @@ export function FilterByLevelPrice() {
                 setPriceOrder(opositeOrder);
             }}
         >
-            <Price isRotated={isIconRotated} />
+            <PriceIcon isRotated={isIconRotated} />
         </button>
     )
 }
 
 // ICONS
 
-// Arrow svg icon
-function Arrow({ isOpen }: { isOpen: boolean }) {
+function ArrowIcon({ isOpen }: { isOpen: boolean }) {
     return (
         <svg width="20" height="13" viewBox="0 0 20 13" fill="none" xmlns="http://www.w3.org/2000/svg"
             style={{
@@ -213,8 +212,7 @@ function Arrow({ isOpen }: { isOpen: boolean }) {
     );
 }
 
-// Price filter icon
-function Price({ isRotated }: { isRotated: boolean }) {
+function PriceIcon({ isRotated }: { isRotated: boolean }) {
     return (
         <svg width="35" height="34" viewBox="0 0 35 34" fill="none" xmlns="http://www.w3.org/2000/svg" className={isRotated ? 'rotate-180 duration-150' : 'duration-150'}>
             <rect width="35" height="34" rx="11.2445" fill="white" />
