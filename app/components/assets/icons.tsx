@@ -108,4 +108,29 @@ export function ZoomIcon() {
             <path d="M17.5 20.5625L22.75 28" stroke="#10005B" strokeWidth="2" strokeLinecap="round" />
         </svg>
     )
-} 
+}
+
+export function ArrowIcon({ isOpen }: { isOpen: boolean }) {
+    return (
+        <svg width="20" height="13" viewBox="0 0 20 13" fill="none" xmlns="http://www.w3.org/2000/svg"
+            style={{
+                width: '16px',
+                height: '9px',
+                transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)',
+                transition: 'transform 0.3s ease-in-out',
+            }}
+        >
+            <path d="M2 2L10 11L18 2" stroke="#1000E5" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+    );
+}
+
+export function PriceIcon({ isRotated }: { isRotated: boolean }) {
+    return (
+        <svg width="35" height="34" viewBox="0 0 35 34" fill="none" xmlns="http://www.w3.org/2000/svg" className={isRotated ? 'rotate-180 duration-150' : 'duration-150'}>
+            <rect width="35" height="34" rx="11.2445" fill="white" />
+            <path d="M11.0418 9.30737L6.0005 14.8405M11.0418 9.30737L16.083 14.8405M11.0418 9.30737L11.0418 25.292" stroke="#1000E5" strokeWidth="1.97804" strokeLinecap="round" strokeLinejoin="round" />
+            <path d="M23.9582 24.9846L28.9995 19.4514M23.9582 24.9846L18.917 19.4514M23.9582 24.9846L23.9582 8.99996" stroke="#BFC1CA" strokeWidth="1.97804" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+    )
+}

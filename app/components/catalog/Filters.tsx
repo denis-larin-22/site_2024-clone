@@ -1,223 +1,88 @@
 'use client'
 
-import { Button } from "@nextui-org/react";
-import { useState, useEffect, useRef } from 'react';
-import { motion } from "framer-motion";
-import { openSansFont } from "../ui/fonts";
+import { DropdownFilterMultiple } from "../ui/catalog-filters/DropdownFilterMultiple"
+import { DropdownFilterSingle } from "../ui/catalog-filters/DropdownFilterSingle"
+import { FilterByLevelPrice } from "../ui/catalog-filters/FilterByLevelPrice"
 
-
-// Animation parameters (Framer Motion lib.)
-const containerAnimation = {
-    hidden: { opacity: 1, scale: 0, y: "-100px" },
-    visible: {
-        opacity: 1,
-        scale: 1,
-        y: 0,
-        transition: {
-            delayChildren: 0.1,
-            staggerChildren: 0.02
-        }
-    }
-};
-const itemAnimation = {
-    hidden: { y: 5, opacity: 0 },
-    visible: {
-        y: 0,
-        opacity: 1
-    }
-};
-
-//   Types
 export interface IFilterOption {
     title?: string,
     options: { option: string, optionIcon?: JSX.Element }[],
 }
 
-interface IProps {
-    filterOption: IFilterOption,
-    styles?: {
-        buttonStyle?: string,
-        listStyle?: string,
-        listItemStyle?: string
+export interface IFilterOption {
+    title?: string,
+    options: { option: string, optionIcon?: JSX.Element }[],
+}
+
+export function Filters() {
+    // Filter options
+    const byMain: IFilterOption = {
+        options: [{ option: "За популярністю" }, { option: "За акціями" }, { option: "За новинками" }, { option: "За алфавітом" }],
     }
-}
-
-// Dropdown list of options with single choice
-export function DropdownFilterSingle({ filterOption, styles }: IProps) {
-    const [isVisible, setIsVisible] = useState<boolean>(false);
-    const dropdownRef = useRef<HTMLDivElement>(null);
-
-    const handleClickOutside = (event: MouseEvent) => {
-        if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
-            setIsVisible(false);
-        }
-    };
-
-    useEffect(() => {
-        document.addEventListener('mousedown', handleClickOutside);
-        return () => {
-            document.removeEventListener('mousedown', handleClickOutside);
-        };
-    }, []);
-
-    const [optionTitle, setOptionTitle] = useState<string>(filterOption.title || filterOption.options[0].option);
-    const [selectedOption, setSelectedOption] = useState<string>(optionTitle);
+    const byDesign: IFilterOption = {
+        title: "Дизайн",
+        options: [{
+            option: "Однотонний", optionIcon: <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path fillRule="evenodd" clipRule="evenodd" d="M1 1V9H9V1H1ZM1 0C0.447715 0 0 0.447715 0 1V9C0 9.55228 0.447715 10 1 10H9C9.55228 10 10 9.55229 10 9V1C10 0.447715 9.55229 0 9 0H1Z" fill="#0E0050" />
+            </svg>
+        }, {
+            option: "З малюнком", optionIcon: <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path fillRule="evenodd" clipRule="evenodd" d="M1 0C0.447715 0 0 0.447715 0 1V9C0 9.55228 0.447715 10 1 10H9C9.55228 10 10 9.55229 10 9V1C10 0.447715 9.55229 0 9 0H1ZM5.29289 1H3.70711L1 3.70711V5.29289L5.29289 1ZM1 6.70711V8.29289L8.29289 1H6.70711L1 6.70711ZM9 1.70711L1.70711 9H4.24262L9 3.84617V1.70711ZM9 5.32049L5.60353 9H7.29289L9 7.29289V5.32049ZM9 8.70711L8.70711 9H9V8.70711ZM1 2.29289L2.29289 1H1V2.29289Z" fill="#0E0050" />
+            </svg>
+        }],
+    }
+    const byOpacity: IFilterOption = {
+        title: "Прозорість",
+        options: [{
+            option: "Напівпрозорі", optionIcon: <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path fillRule="evenodd" clipRule="evenodd" d="M0.0189448 6C0.00639146 6.16502 0 6.33176 0 6.5C0 6.66824 0.00639146 6.83498 0.0189448 7C0.274257 10.3562 3.07839 13 6.5 13C9.92162 13 12.7257 10.3562 12.9811 7C12.9936 6.83498 13 6.66824 13 6.5C13 6.33176 12.9936 6.16502 12.9811 6C12.7257 2.64378 9.92162 0 6.5 0C3.07839 0 0.274257 2.64378 0.0189448 6ZM1.02242 7C1.27504 9.80325 3.63098 12 6.5 12C9.36902 12 11.725 9.80325 11.9776 7H1.02242ZM11.9776 6H1.02242C1.27504 3.19675 3.63098 1 6.5 1C9.36902 1 11.725 3.19675 11.9776 6Z" fill="#0E0050" />
+                <path d="M6.5 12.5C10.0899 12.5 13 9.58985 13 6H0C0 9.58985 2.91015 12.5 6.5 12.5Z" fill="#0E0050" />
+            </svg>
+        }, {
+            option: "Блекаут", optionIcon: <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M13 6.5C13 10.0899 10.0899 13 6.5 13C2.91015 13 0 10.0899 0 6.5C0 2.91015 2.91015 0 6.5 0C10.0899 0 13 2.91015 13 6.5Z" fill="#0E0050" />
+            </svg>
+        }],
+    }
+    const byCollection: IFilterOption = {
+        title: "Колекція",
+        options: [{ option: "Альмерія" }, { option: "Арома" }, { option: "Бірма" }, { option: "Бостон" }, { option: "Ельба" }, { option: "Камелія" }, { option: "Лондон" }, { option: "Льон" }, { option: "Льон Black Out" }, { option: "Маніла" }, { option: "Невада" }, { option: "Париж" }, { option: "Пуебло" }, { option: "Рим" }, { option: "Сафарі" }, { option: "Сіде" }, { option: "Сіде Black out" }, { option: "Сідней" }, { option: "Соул" }, { option: "Сфера Black out" }, { option: "Тальник" }, { option: "Флоренція" }, { option: "Шовк" }
+        ],
+    }
+    const byPrice: IFilterOption = {
+        title: "Категорія ціни",
+        options: [{ option: "1 категорія" }, { option: "2 категорія" }, { option: "3 категорія" }, { option: "4 категорія" }]
+    }
+    const byColor: IFilterOption = {
+        title: "Колір",
+        options: [
+            { option: "Бежевий", optionIcon: <span className='inline-block w-5 h-5 rounded-full bg-[#FAE3B7]'></span> },
+            { option: "Білий", optionIcon: <span className='inline-block w-5 h-5 rounded-full bg-[#FFFFFF] border-1 border-t-blue'></span> },
+            { option: "Блакитний", optionIcon: <span className='inline-block w-5 h-5 rounded-full bg-[#66D4FD]'></span> },
+            { option: "Жовтий", optionIcon: <span className='inline-block w-5 h-5 rounded-full bg-[#FFD056]'></span> },
+            { option: "Зелений", optionIcon: <span className='inline-block w-5 h-5 rounded-full bg-[#48D177]'></span> },
+            { option: "Коричневий", optionIcon: <span className='inline-block w-5 h-5 rounded-full bg-[#AC6C20]'></span> },
+            { option: "Помаранчевий", optionIcon: <span className='inline-block w-5 h-5 rounded-full bg-[#F79D15]'></span> },
+            { option: "Рожевий", optionIcon: <span className='inline-block w-5 h-5 rounded-full bg-[#FF89C9]'></span> },
+            { option: "Синій", optionIcon: <span className='inline-block w-5 h-5 rounded-full bg-[#405CF3]'></span> },
+            { option: "Сірий", optionIcon: <span className='inline-block w-5 h-5 rounded-full bg-[#DBDBDB]'></span> },
+            { option: "Срібло", optionIcon: <span className='inline-block w-5 h-5 rounded-full bg-[#ECECEC]'></span> },
+            { option: "Фіолетовий", optionIcon: <span className='inline-block w-5 h-5 rounded-full bg-[#C464FF]'></span> },
+            { option: "Червоний", optionIcon: <span className='inline-block w-5 h-5 rounded-full bg-[#FF4242]'></span> },
+            { option: "Чорний", optionIcon: <span className='inline-block w-5 h-5 rounded-full bg-[#202020]'></span> }
+        ]
+    }
 
     return (
-        <div ref={dropdownRef} className="relative">
-            <Button
-                className={`py-3 px-4 rounded-3xl bg-white text-sm text-t-blue-dark font-medium flex items-center justify-between gap-4 ${styles ? styles.buttonStyle : ''}`}
-                onClick={() => setIsVisible(!isVisible)}
-            >
-                {optionTitle}
-                <ArrowIcon isOpen={isVisible} />
-            </Button>
-            {
-                isVisible &&
-                <motion.ul
-                    className={`${openSansFont.className} text-t-blue-dark absolute z-50 mt-[5px] py-[6px] px-[5px] w-fit bg-white rounded-2xl flex flex-col gap-y-[2px] ${styles ? styles.listStyle : ''}`}
-                    variants={containerAnimation}
-                    initial="hidden"
-                    animate="visible"
-                >
-                    {filterOption.options.map(({ option, optionIcon }, index) => (
-                        <motion.li
-                            key={index}
-                            className={`${selectedOption === option ? 'bg-t-pale' : 'bg-none'} h-7 px-2 cursor-pointer rounded-3xl text-sm hover:bg-t-pale duration-150 flex justify-between ${styles ? styles.listItemStyle : ''}`}
-                            variants={itemAnimation}
-                            onClick={() => {
-                                if (!filterOption.title) {
-                                    setOptionTitle(option);
-                                }
-                                setSelectedOption(option);
-                                setIsVisible(false);
-                            }}
-                        >
-                            <p className="flex items-center gap-1 text-sm font-normal">
-                                {optionIcon !== undefined ? optionIcon : null}
-                                {option}
-                            </p>
-                        </motion.li>
-                    ))}
-                </motion.ul>
-            }
+        <div className="flex items-start justify-normal xl:justify-center gap-[10px] w-full min-h-[500px] pl-0 mobile:pl-[60px] xl:pl-0 overflow-x-auto hide-scrollbar">
+            <DropdownFilterSingle filterOption={byMain} styles={{ listStyle: "w-full" }} />
+            <DropdownFilterMultiple filterOption={byColor} />
+            <DropdownFilterSingle filterOption={byDesign} />
+            <DropdownFilterSingle filterOption={byOpacity} />
+            <DropdownFilterMultiple filterOption={byCollection} />
+            <DropdownFilterMultiple filterOption={byPrice} />
+            <FilterByLevelPrice
+            />
         </div>
-    )
-}
-
-// Dropdown list of options with multiple choice
-export function DropdownFilterMultiple({ filterOption, styles }: IProps) {
-    const [isVisible, setIsVisible] = useState<boolean>(false);
-    const dropdownRef = useRef<HTMLDivElement>(null);
-    const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
-
-    const handleClickOutside = (event: MouseEvent) => {
-        if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
-            setIsVisible(false);
-        }
-    };
-
-    useEffect(() => {
-        document.addEventListener('mousedown', handleClickOutside);
-        return () => {
-            document.removeEventListener('mousedown', handleClickOutside);
-        };
-    }, []);
-
-    const toggleOption = (option: string) => {
-        const updatedOptions = [...selectedOptions];
-        const index = updatedOptions.indexOf(option);
-        if (index > -1) {
-            updatedOptions.splice(index, 1);
-        } else {
-            updatedOptions.push(option);
-        }
-        setSelectedOptions(updatedOptions);
-    };
-
-    return (
-        <div ref={dropdownRef} className="relative text-t-blue-dark">
-            <Button
-                className={`py-3 px-4 rounded-3xl text-t-blue-dark bg-white text-sm font-medium flex items-center justify-between gap-4 ${styles ? styles.buttonStyle : ''}`}
-                onClick={() => setIsVisible(!isVisible)}
-            >
-                <p className="relative">
-                    {filterOption.title}
-                    {selectedOptions.length !== 0 ?
-                        <span className="absolute -bottom-[6px] tablet:-top-[6px] -right-4 w-[17px] h-[17px] text-[13px] font-medium  text-white inline-flex items-center justify-center rounded-full bg-t-blue">{selectedOptions.length}</span>
-                        :
-                        null
-                    }
-                </p>
-                <ArrowIcon isOpen={isVisible} />
-            </Button>
-            {isVisible && (
-                <motion.ul
-                    className={`${openSansFont.className} absolute z-50 w-fit max-h-[450px] overflow-y-auto bg-white p-[6px] rounded-2xl mt-[5px] flex flex-col gap-y-[2px] ${styles ? styles.listStyle : ''}`}
-                    variants={containerAnimation}
-                    initial="hidden"
-                    animate="visible"
-                >
-                    {filterOption.options.map(({ option, optionIcon }, index) => (
-                        <motion.li
-                            key={index}
-                            className={`${selectedOptions.includes(option) ? 'bg-t-pale' : 'bg-none'} h-7 px-2 cursor-pointer p-1 rounded-3xl hover:bg-t-pale duration-150 flex justify-between ${styles ? styles.listItemStyle : ''}`}
-                            variants={itemAnimation}
-                            onClick={() => toggleOption(option)}
-                        >
-                            <p className="text-nowrap flex items-center gap-x-[5px] text-sm font-normal">
-                                {optionIcon === undefined ? null : optionIcon}
-                                {option}
-                            </p>
-                        </motion.li>
-                    ))}
-                </motion.ul>
-            )}
-        </div>
-    );
-}
-
-// Filter by price
-export function FilterByLevelPrice() {
-    const [priceOrder, setPriceOrder] = useState<"fromHigher" | "fromLower">("fromLower")
-    const isIconRotated = priceOrder === "fromHigher";
-
-    return (
-        <button
-            className="w-10 h-10 rounded-full bg-white flex items-center justify-center"
-            onClick={() => {
-                const opositeOrder = priceOrder === "fromHigher" ? "fromLower" : "fromHigher";
-                setPriceOrder(opositeOrder);
-            }}
-        >
-            <PriceIcon isRotated={isIconRotated} />
-        </button>
-    )
-}
-
-// ICONS
-
-function ArrowIcon({ isOpen }: { isOpen: boolean }) {
-    return (
-        <svg width="20" height="13" viewBox="0 0 20 13" fill="none" xmlns="http://www.w3.org/2000/svg"
-            style={{
-                width: '16px',
-                height: '9px',
-                transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)',
-                transition: 'transform 0.3s ease-in-out',
-            }}
-        >
-            <path d="M2 2L10 11L18 2" stroke="#1000E5" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
-        </svg>
-    );
-}
-
-function PriceIcon({ isRotated }: { isRotated: boolean }) {
-    return (
-        <svg width="35" height="34" viewBox="0 0 35 34" fill="none" xmlns="http://www.w3.org/2000/svg" className={isRotated ? 'rotate-180 duration-150' : 'duration-150'}>
-            <rect width="35" height="34" rx="11.2445" fill="white" />
-            <path d="M11.0418 9.30737L6.0005 14.8405M11.0418 9.30737L16.083 14.8405M11.0418 9.30737L11.0418 25.292" stroke="#1000E5" strokeWidth="1.97804" strokeLinecap="round" strokeLinejoin="round" />
-            <path d="M23.9582 24.9846L28.9995 19.4514M23.9582 24.9846L18.917 19.4514M23.9582 24.9846L23.9582 8.99996" stroke="#BFC1CA" strokeWidth="1.97804" strokeLinecap="round" strokeLinejoin="round" />
-        </svg>
     )
 }
