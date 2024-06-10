@@ -37,7 +37,7 @@ export default function CatalogItem({ catalogItem }: IProps) {
         <>
             <button
                 onClick={onOpen}
-                className="group relative inline-flex max-w-[172px] mobile:max-w-[282px] h-[231px] mobile:h-[381px] rounded-xl overflow-hidden mobile:hover:ring-4 ring-offset-4 ring-t-blue/50 duration-400"
+                className="group relative inline-flex w-full mobile:max-w-[282px] h-[231px] mobile:h-[381px] rounded-xl overflow-hidden mobile:hover:ring-4 ring-offset-4 ring-t-blue/50 duration-400"
             >
                 <Image
                     alt={`Фото ${type} ${collection}`}
