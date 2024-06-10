@@ -1,23 +1,75 @@
 'use client'
 
+import { useEffect, useRef, useState } from "react"
 import { DropdownFilterMultiple } from "../ui/catalog-filters/DropdownFilterMultiple"
 import { DropdownFilterSingle } from "../ui/catalog-filters/DropdownFilterSingle"
 import { FilterByLevelPrice } from "../ui/catalog-filters/FilterByLevelPrice"
 
-export interface IFilterOption {
-    title?: string,
-    options: { option: string, optionIcon?: JSX.Element }[],
-}
-
-export interface IFilterOption {
-    title?: string,
-    options: { option: string, optionIcon?: JSX.Element }[],
-}
-
 export function Filters() {
-    // Filter options
+    const containerRef = useRef<HTMLDivElement>(null);
+    const [openFilterIndex, setOpenFilterIndex] = useState<number | null>(null);
+    const filters = getFiltersOptions();
+
+    const handleToggle = (index: number) => {
+        setOpenFilterIndex(prevIndex => (prevIndex === index ? null : index));
+    };
+
+    const handleClickOutside = (event: MouseEvent) => {
+        if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
+            setOpenFilterIndex(null);
+        }
+    };
+
+    useEffect(() => {
+        document.addEventListener('click', handleClickOutside);
+        return () => {
+            document.removeEventListener('click', handleClickOutside);
+        };
+    }, []);
+
+
+    return (
+        <div ref={containerRef} className="flex items-start justify-normal xl:justify-center gap-[10px] w-full min-h-[500px] pl-0 mobile:pl-[60px] xl:pl-0 overflow-x-auto hide-scrollbar">
+            {filters.map((filter, index) => {
+                const isOpen = openFilterIndex === index;
+
+                if (filter.multichoice) {
+                    return (
+                        <DropdownFilterMultiple
+                            key={index}
+                            filterOption={filter}
+                            // styles={styles}
+                            isOpen={isOpen}
+                            onToggle={() => handleToggle(index)}
+                        />
+                    )
+                } else {
+                    return (
+                        <DropdownFilterSingle
+                            key={index}
+                            filterOption={filter}
+                            // styles={styles}
+                            isOpen={isOpen}
+                            onToggle={() => handleToggle(index)}
+                        />
+                    )
+                }
+            })}
+            <FilterByLevelPrice />
+        </div>
+    )
+}
+
+export interface IFilterOption {
+    title?: string,
+    options: { option: string, optionIcon?: JSX.Element }[],
+    multichoice: boolean
+}
+
+function getFiltersOptions(): IFilterOption[] {
     const byMain: IFilterOption = {
         options: [{ option: "За популярністю" }, { option: "За акціями" }, { option: "За новинками" }, { option: "За алфавітом" }],
+        multichoice: false
     }
     const byDesign: IFilterOption = {
         title: "Дизайн",
@@ -30,6 +82,7 @@ export function Filters() {
                 <path fillRule="evenodd" clipRule="evenodd" d="M1 0C0.447715 0 0 0.447715 0 1V9C0 9.55228 0.447715 10 1 10H9C9.55228 10 10 9.55229 10 9V1C10 0.447715 9.55229 0 9 0H1ZM5.29289 1H3.70711L1 3.70711V5.29289L5.29289 1ZM1 6.70711V8.29289L8.29289 1H6.70711L1 6.70711ZM9 1.70711L1.70711 9H4.24262L9 3.84617V1.70711ZM9 5.32049L5.60353 9H7.29289L9 7.29289V5.32049ZM9 8.70711L8.70711 9H9V8.70711ZM1 2.29289L2.29289 1H1V2.29289Z" fill="#0E0050" />
             </svg>
         }],
+        multichoice: false
     }
     const byOpacity: IFilterOption = {
         title: "Прозорість",
@@ -43,15 +96,18 @@ export function Filters() {
                 <path d="M13 6.5C13 10.0899 10.0899 13 6.5 13C2.91015 13 0 10.0899 0 6.5C0 2.91015 2.91015 0 6.5 0C10.0899 0 13 2.91015 13 6.5Z" fill="#0E0050" />
             </svg>
         }],
+        multichoice: false
     }
     const byCollection: IFilterOption = {
         title: "Колекція",
         options: [{ option: "Альмерія" }, { option: "Арома" }, { option: "Бірма" }, { option: "Бостон" }, { option: "Ельба" }, { option: "Камелія" }, { option: "Лондон" }, { option: "Льон" }, { option: "Льон Black Out" }, { option: "Маніла" }, { option: "Невада" }, { option: "Париж" }, { option: "Пуебло" }, { option: "Рим" }, { option: "Сафарі" }, { option: "Сіде" }, { option: "Сіде Black out" }, { option: "Сідней" }, { option: "Соул" }, { option: "Сфера Black out" }, { option: "Тальник" }, { option: "Флоренція" }, { option: "Шовк" }
         ],
+        multichoice: true
     }
     const byPrice: IFilterOption = {
         title: "Категорія ціни",
-        options: [{ option: "1 категорія" }, { option: "2 категорія" }, { option: "3 категорія" }, { option: "4 категорія" }]
+        options: [{ option: "1 категорія" }, { option: "2 категорія" }, { option: "3 категорія" }, { option: "4 категорія" }],
+        multichoice: true
     }
     const byColor: IFilterOption = {
         title: "Колір",
@@ -70,19 +126,9 @@ export function Filters() {
             { option: "Фіолетовий", optionIcon: <span className='inline-block w-5 h-5 rounded-full bg-[#C464FF]'></span> },
             { option: "Червоний", optionIcon: <span className='inline-block w-5 h-5 rounded-full bg-[#FF4242]'></span> },
             { option: "Чорний", optionIcon: <span className='inline-block w-5 h-5 rounded-full bg-[#202020]'></span> }
-        ]
+        ],
+        multichoice: true
     }
 
-    return (
-        <div className="flex items-start justify-normal xl:justify-center gap-[10px] w-full min-h-[500px] pl-0 mobile:pl-[60px] xl:pl-0 overflow-x-auto hide-scrollbar">
-            <DropdownFilterSingle filterOption={byMain} styles={{ listStyle: "w-full" }} />
-            <DropdownFilterMultiple filterOption={byColor} />
-            <DropdownFilterSingle filterOption={byDesign} />
-            <DropdownFilterSingle filterOption={byOpacity} />
-            <DropdownFilterMultiple filterOption={byCollection} />
-            <DropdownFilterMultiple filterOption={byPrice} />
-            <FilterByLevelPrice
-            />
-        </div>
-    )
+    return [byMain, byDesign, byOpacity, byCollection, byPrice, byColor];
 }
