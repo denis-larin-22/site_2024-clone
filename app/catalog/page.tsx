@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 
 export default function CatalogPage() {
     return (
-        <section className="relative h-screen w-screen bg-t-pale flex flex-row overflow-hidden">
+        <section className="relative h-dvh w-screen bg-t-pale flex flex-row overflow-hidden">
             <Navigation />
             <div className="flex flex-col items-center flex-grow overflow-y-auto overflow-x-hidden p-3 mobile:py-[60px]">
                 <Catalog />

@@ -46,7 +46,7 @@ export function ModalDesktop({ catalogItem, onModalCloseHandler }: IProps) {
                             width={47}
                             height={46}
                             loading="lazy"
-                            className={`cursor-pointer rounded-md hover:ring-1 ring-[#10005B] duration-150 ${selectedColor === color ? "ring-1" : ""}`}
+                            className={`cursor-pointer rounded-md ring-1 hover:ring-offset-1 hover:ring-[#10005B] duration-150 ${selectedColor === color ? "ring-[#10005B]" : "ring-t-gray-text"}`}
                         />
                     </li>
                 ))}
@@ -56,9 +56,9 @@ export function ModalDesktop({ catalogItem, onModalCloseHandler }: IProps) {
                 <Image
                     alt={`Фото варінта тканини для ${name}`}
                     src={selectedColor}
-                    width={329}
-                    height={593}
-                    className="h-[593px] w-[329px] object-cover rounded-[30px]"
+                    width={346}
+                    height={620}
+                    className="h-[620px] w-[346px] object-cover rounded-[30px]"
                 />
                 <button onClick={onZoomed} className="w-[65px] h-[65px] absolute bottom-5 right-5 rounded-full bg-white flex items-center justify-center">
                     <ZoomIcon />

@@ -18,6 +18,7 @@ export default function CatalogItem({ catalogItem }: IProps) {
     const { isOpen, onOpen, onOpenChange } = useDisclosure();
     // Catalog item properties
     const { availableColors, collection, composition, fabricTexture, guarantee, isInStock, maxWidth, name, opacity, type, waterproofnessLevel, priceCategory, label, cashback, specialOffer } = catalogItem;
+    const isFabricOfTheWeek: boolean = label === "Тканина тижня";
 
     // Additional styles
     const roundingExternalCorners = "before:inline-block before:w-6 before:h-6 before:absolute before:z-0 before:bottom-[76%] mobile:before:bottom-[85%] before:right-[-3px] before:rounded-br-xl before:border-r-4 before:border-b-4 before:border-t-pale after:inline-block after:w-6 after:h-6 after:absolute after:z-0 after:top-[68%] mobile:after:top-[82%] after:right-[-5px] after:rounded-tr-2xl after:border-r-5 after:border-t-5 after:border-t-pale"
@@ -52,23 +53,25 @@ export default function CatalogItem({ catalogItem }: IProps) {
                     <span className="relative z-10">{priceCategory}</span>
                 </p>
                 {/* Product info fields*/}
-                <div className={`absolute bottom-2 mobile:bottom-[11px] left-2 mobile:left-[11px] right-2 mobile:right-[11px] rounded-xl p-2 mobile:p-3 pt-1.5 mobile:pt-2  ${label === "Тканина тижня" ? "bg-t-blue" : "bg-white"} flex flex-col items-start group-hover:shadow-xl duration-150`}>
+                <div className={`absolute bottom-2 mobile:bottom-[11px] left-2 mobile:left-[11px] right-2 mobile:right-[11px] rounded-xl p-2 mobile:p-3 pt-1.5 mobile:pt-2  ${isFabricOfTheWeek ? "bg-t-blue" : "bg-white"} flex flex-col items-start group-hover:shadow-xl duration-150`}>
                     {/* Collection name field*/}
-                    <p className={`mb-1 ${openSansFont.className} uppercase text-3xs mobile:text-xs  ${label === "Тканина тижня" ? "text-white" : "text-t-gray-text"}`}>{collection}</p>
+                    <p className={`mb-1 ${openSansFont.className} uppercase text-3xs mobile:text-xs  ${isFabricOfTheWeek ? "text-white" : "text-t-gray-text"}`}>{collection}</p>
                     {/* Product name field*/}
-                    <p className={`mb-[18px] text-sm mobile:text-xl font-bold ${label === "Тканина тижня" ? "text-white" : "text-t-blue-dark"}`}>{name}</p>
+                    <p className={`mb-[18px] text-sm mobile:text-xl font-bold ${isFabricOfTheWeek ? "text-white" : "text-t-blue-dark"}`}>{name}</p>
                     {/* Cashback field (by condition)*/}
                     {cashback === undefined ? null : <p className="absolute top-0 mobile:top-2 right-2 mobile:right-3">
                         <CoinIcon />
                     </p>}
                     {/* Special Offer field (by condition)*/}
-                    {specialOffer === undefined ? null : <p className="w-[89px] mobile:w-[113px] py-0.5 px-1.5 mobile:px-3 absolute -top-[21px] mobile:-top-[31px] right-0 flex items-center justify-end text-xxs mobile:text-xs font-bold text-[#F79D15] bg-[#FFEFD1] rounded-full">
+                    {specialOffer === undefined ? null : <p className="w-[89px] mobile:w-[113px] pt-0.5 mobile:pt-1.5 mobile:pb-[5px] px-1.5 absolute -top-[21px] mobile:-top-[31px] right-0 flex justify-end text-xxs mobile:text-xs font-bold text-[#F79D15] bg-[#FFEFD1] rounded-full">
                         <FireIcon className="absolute left-1.5 bottom-0.5 mobile:bottom-1" />
                         {specialOffer}
                     </p>}
                     {/* isInStock and label info fields*/}
                     <div className="w-full flex items-center justify-between">
-                        <p className={`w-fit h-[15px] mobile:h-[25px] px-1 mobile:px-[10px] py-0 mobile:pt-[2px]  ${label === "Тканина тижня" ? "bg-white" : "pl-0 bg-none"} rounded-full  ${openSansFont.className} text-[9px] mobile:text-sm ${isInStock === "в наявності" ? "text-t-green" : "text-[#FF4242]"}`}>{isInStock}</p>
+                        <p className={`${isFabricOfTheWeek ? "hidden mobile:inline px-2.5 bg-t-pale rounded-xl" : "inline"} w-fit h-[15px] py-1 mobile:h-[25px] ${openSansFont.className} text-[9px] leading-none mobile:leading-none mobile:text-sm ${isInStock === "в наявності" ? "text-t-green" : "text-[#FF4242]"}`}>
+                            {isInStock}
+                        </p>
                         <p className={`h-[15px] mobile:h-[25px] w-fit px-1 mobile:px-[14px] pt-[2px] mobile:py-1 rounded-full text-3xs mobile:text-xs font-bold  ${label === "Новинка" ?
                             "text-white bg-t-blue"
                             :
@@ -86,7 +89,7 @@ export default function CatalogItem({ catalogItem }: IProps) {
                     backdrop="blur"
                     classNames={{
                         wrapper: "h-fit my-auto",
-                        base: "relative max-w-[998px] min-h-[523px] p-10 bg-[#FAFAFA] text-t-blue-dark",
+                        base: "relative max-w-[1048px] min-h-[540px] p-10 bg-[#FAFAFA] text-t-blue-dark rounded-[27px]",
                         body: "p-0 flex flex-row items-center justify-between gap-x-[330px]"
                     }}
                     isOpen={isOpen}

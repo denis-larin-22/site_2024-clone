@@ -9,7 +9,7 @@ export function FilterByLevelPrice() {
 
     return (
         <button
-            className="w-10 h-10 rounded-full bg-white flex items-center justify-center"
+            className="min-w-10 h-10 rounded-full bg-white flex items-center justify-center"
             onClick={() => {
                 const opositeOrder = priceOrder === "fromHigher" ? "fromLower" : "fromHigher";
                 setPriceOrder(opositeOrder);

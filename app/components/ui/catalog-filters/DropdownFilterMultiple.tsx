@@ -44,7 +44,7 @@ export function DropdownFilterMultiple({ filterOption, isOpen, onToggle }: IFilt
             {isOpen && (
                 <>
                     <motion.ul
-                        className={`${openSansFont.className} fixed left-0 mobile:absolute z-50 w-screen mobile:w-fit max-h-[450px] overflow-y-auto bg-t-pale mobile:bg-white p-5 mobile:p-1.5 rounded-bl-[35px] rounded-br-[35px] mobile:rounded-2xl mt-[5px] flex flex-row flex-wrap mobile:flex-col gap-1.5 mobile:gap-y-[2px]`}
+                        className={`${openSansFont.className} fixed left-0 mobile:absolute z-50 w-screen mobile:w-fit max-h-[450px] overflow-y-auto bg-t-pale mobile:bg-white p-5 mobile:p-1.5 rounded-bl-[35px] rounded-br-[35px] mobile:rounded-2xl mt-[5px] flex flex-row flex-wrap mobile:flex-nowrap mobile:flex-col gap-1.5 mobile:gap-y-[2px]`}
                         variants={containerAnimation}
                         initial="hidden"
                         animate="visible"
@@ -52,12 +52,12 @@ export function DropdownFilterMultiple({ filterOption, isOpen, onToggle }: IFilt
                         {filterOption.options.map(({ option, optionIcon }, index) => (
                             <motion.li
                                 key={index}
-                                className={`${selectedOptions.includes(option) ? 'bg-t-blue text-white mobile:text-inherit mobile:bg-t-pale' : 'bg-white mobile:bg-none'} h-7 relative py-[9px] px-[18px] mobile:px-2 cursor-pointer p-1 rounded-3xl mobile:hover:bg-t-pale duration-150 flex items-center gap-x-[7px]`}
+                                className={`${selectedOptions.includes(option) ? 'bg-t-blue text-white mobile:text-inherit mobile:bg-t-pale' : 'bg-white mobile:bg-none'} h-7 relative py-[9px] px-[18px] mobile:px-2 cursor-pointer p-1 rounded-3xl mobile:hover:bg-t-pale duration-150 flex items-center ${optionIcon === undefined ? '' : 'gap-x-[7px]'}`}
                                 variants={itemAnimation}
                                 onClick={() => toggleOption(option)}
                             >
                                 <span className="inline-block h-5 absolute left-1 mobile:static">{optionIcon === undefined ? null : optionIcon}</span>
-                                <p className={`${optionIcon ? 'ml-2' : ''} text-nowrap flex items-center gap-x-[5px] text-sm font-normal`}>{option}</p>
+                                <p className={`${optionIcon ? 'ml-0 mobile:ml-2' : ''} text-nowrap flex items-center gap-x-[5px] text-sm font-normal`}>{option}</p>
                             </motion.li>
                         ))}
                     </motion.ul>

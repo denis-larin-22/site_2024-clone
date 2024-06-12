@@ -60,7 +60,7 @@ export function ModalTabletMobile({ catalogItem, onModalCloseHandler }: IProps) 
                                 width={47}
                                 height={46}
                                 loading="lazy"
-                                className={`cursor-pointer rounded-md hover:ring-1 ring-[#10005B] duration-150 ${selectedColor === color ? "ring-1" : ""}`}
+                                className={`cursor-pointer rounded-md ring-1 duration-150 ${selectedColor === color ? "ring-[#10005B]" : "ring-t-gray-text"}`}
                             />
                         </li>
                     ))}

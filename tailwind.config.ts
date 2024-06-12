@@ -25,9 +25,8 @@ const config: Config = {
         "t-blue-green-gradient": "linear-gradient(270deg, rgba(8,255,184,1) 50%, rgba(11,45,226,1) 100%)",
       },
       colors: {
-        // text
-        't-dark-text': '#1E1E1E',
         //template's colors
+        't-dark-text': '#1E1E1E',
         't-blue-dark': '#0E0050',
         't-blue': '#1000E5',
         't-gray': '#BFC1CA',
