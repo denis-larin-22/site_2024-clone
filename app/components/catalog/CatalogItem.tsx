@@ -55,7 +55,7 @@ export default function CatalogItem({ catalogItem }: IProps) {
                 {/* Product info fields*/}
                 <div className={`absolute bottom-2 mobile:bottom-[11px] left-2 mobile:left-[11px] right-2 mobile:right-[11px] rounded-xl p-2 mobile:p-3 pt-1.5 mobile:pt-2  ${isFabricOfTheWeek ? "bg-t-blue" : "bg-white"} flex flex-col items-start group-hover:shadow-xl duration-150`}>
                     {/* Collection name field*/}
-                    <p className={`mb-1 ${openSansFont.className} uppercase text-3xs mobile:text-xs  ${isFabricOfTheWeek ? "text-white" : "text-t-gray-text"}`}>{collection}</p>
+                    <p className={`mb-1 ${openSansFont.className} uppercase text-3xs mobile:text-xs ${isFabricOfTheWeek ? "text-white" : "text-t-gray-text"}`}>{collection}</p>
                     {/* Product name field*/}
                     <p className={`mb-[18px] text-sm mobile:text-xl font-bold ${isFabricOfTheWeek ? "text-white" : "text-t-blue-dark"}`}>{name}</p>
                     {/* Cashback field (by condition)*/}
@@ -63,10 +63,18 @@ export default function CatalogItem({ catalogItem }: IProps) {
                         <CoinIcon />
                     </p>}
                     {/* Special Offer field (by condition)*/}
-                    {specialOffer === undefined ? null : <p className="w-[89px] mobile:w-[113px] pt-0.5 mobile:pt-1.5 mobile:pb-[5px] px-1.5 absolute -top-[21px] mobile:-top-[31px] right-0 flex justify-end text-xxs mobile:text-xs font-bold text-[#F79D15] bg-[#FFEFD1] rounded-full">
+                    {/* {specialOffer === undefined ? null : <p className="w-[89px] mobile:w-[113px] pt-0.5 mobile:pt-1.5 mobile:pb-[5px] px-1.5 absolute -top-[21px] mobile:-top-[31px] right-0 flex justify-end text-xxs mobile:text-xs font-bold text-[#F79D15] bg-[#FFEFD1] rounded-full">
                         <FireIcon className="absolute left-1.5 bottom-0.5 mobile:bottom-1" />
                         {specialOffer}
-                    </p>}
+                    </p>} */}
+
+                    {specialOffer === undefined ? null :
+                        <p className="absolute right-0 -top-5 mobile:-top-7 inline-flex h-[18px] mobile:h-[25px] w-[89px] mobile:w-[113px] pr-1.5 mobile:pr-[11px] rounded-[36px] bg-[#FFEFD1] text-xxs mobile:text-xs text-[#F79D15] font-bold items-center justify-end">
+                            <span className="absolute left-[5px] mobile:left-[7px] bottom-0.5 mobile:bottom-1">
+                                <FireIcon />
+                            </span>
+                            {specialOffer}
+                        </p>}
                     {/* isInStock and label info fields*/}
                     <div className="w-full flex items-center justify-between">
                         <p className={`${isFabricOfTheWeek ? "hidden mobile:inline px-2.5 bg-t-pale rounded-xl" : "inline"} w-fit h-[15px] py-1 mobile:h-[25px] ${openSansFont.className} text-[9px] leading-none mobile:leading-none mobile:text-sm ${isInStock === "в наявності" ? "text-t-green" : "text-[#FF4242]"}`}>

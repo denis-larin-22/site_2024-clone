@@ -31,7 +31,7 @@ export function DropdownFilterSingle({ filterOption, isOpen, onToggle }: IFilter
                 isOpen &&
                 <>
                     <motion.ul
-                        className={`${openSansFont.className} text-t-blue-dark fixed left-0 mobile:absolute z-50 mt-[5px] py-[30px] mobile:py-[6px] px-5 mobile:px-[5px] w-screen mobile:w-fit bg-t-pale mobile:bg-white rounded-bl-[35px] rounded-br-[35px] mobile:rounded-2xl flex flex-col gap-y-[2px]`}
+                        className={`${openSansFont.className} text-t-blue-dark fixed left-0 mobile:absolute z-50 mt-[5px] py-[30px] mobile:py-2.5 px-5 mobile:px-2.5 w-screen mobile:w-fit bg-t-pale mobile:bg-white rounded-bl-[35px] rounded-br-[35px] mobile:rounded-2xl flex flex-col gap-y-[2px]`}
                         variants={containerAnimation}
                         initial="hidden"
                         animate="visible"
@@ -39,7 +39,7 @@ export function DropdownFilterSingle({ filterOption, isOpen, onToggle }: IFilter
                         {filterOption.options.map(({ option, optionIcon }, index) => (
                             <motion.li
                                 key={index}
-                                className={`${selectedOption === option ? 'bg-white mobile:bg-t-pale' : 'bg-none'} h-[38px] mobile:h-7 px-[18px] mobile:px-2 cursor-pointer rounded-3xl text-sm hover:bg-t-pale duration-150 flex items-center gap-x-3 mobile:gap-x-1.5`}
+                                className={`${selectedOption === option ? 'bg-white mobile:bg-t-pale' : 'bg-none'} h-[38px] mobile:h-7 px-[18px] mobile:px-3 mobile:py-1 cursor-pointer rounded-3xl text-sm hover:bg-t-pale duration-150 flex items-center gap-x-3 mobile:gap-x-1.5`}
                                 variants={itemAnimation}
                                 onClick={() => {
                                     if (!filterOption.title) {
@@ -49,8 +49,8 @@ export function DropdownFilterSingle({ filterOption, isOpen, onToggle }: IFilter
                                     onToggle();
                                 }}
                             >
-                                <span className="inline-block h-fit">{optionIcon !== undefined ? optionIcon : null}</span>
-                                <p className="flex items-center gap-1 text-sm font-normal">{option}</p>
+                                {optionIcon !== undefined ? <span className="inline-block h-fit">{optionIcon}</span> : null}
+                                <p className="flex items-center gap-1 text-sm font-normal whitespace-nowrap">{option}</p>
                             </motion.li>
                         ))}
                     </motion.ul>

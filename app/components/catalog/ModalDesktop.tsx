@@ -30,7 +30,7 @@ export function ModalDesktop({ catalogItem, onModalCloseHandler }: IProps) {
 
     return (
         <>
-            <CloseButton btnHandler={onModalCloseHandler} iconColor="#10005B" className="absolute right-4 top-4" />
+            <CloseButton btnHandler={onModalCloseHandler} iconColor="#10005B" className="absolute right-5 top-5" />
 
             <ul className="flex flex-col gap-2.5">
                 {availableColors.map((color, index) => (
@@ -60,7 +60,7 @@ export function ModalDesktop({ catalogItem, onModalCloseHandler }: IProps) {
                     height={620}
                     className="h-[620px] w-[346px] object-cover rounded-[30px]"
                 />
-                <button onClick={onZoomed} className="w-[65px] h-[65px] absolute bottom-5 right-5 rounded-full bg-white flex items-center justify-center">
+                <button onClick={onZoomed} className="w-[65px] h-[65px] absolute bottom-[30px] right-[30px] rounded-full bg-white flex items-center justify-center">
                     <ZoomIcon />
                 </button>
                 <Modal
@@ -91,7 +91,7 @@ export function ModalDesktop({ catalogItem, onModalCloseHandler }: IProps) {
                 </Modal>
             </div>
 
-            <section className="w-[472px]">
+            <section className="w-[451px] xl:w-[515px]">
                 <div>
                     <div className={`${openSansFont.className} flex items-center justify-between`}>
                         <p className="text-[#AEB1BA] text-xs">{type.toUpperCase()} <span className="text-t-blue-dark">/</span> {collection.toUpperCase()}</p>
