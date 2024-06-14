@@ -38,4 +38,19 @@ body {
     ::-webkit-scrollbar-thumb:hover {
         background: #AEB1BA50;
     }
+
+    .fade-bottom {
+        position: relative;
+    }
+
+    .fade-bottom::after {
+        content: '';
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 20px;
+        background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.5));
+        pointer-events: none;
+    }
 }

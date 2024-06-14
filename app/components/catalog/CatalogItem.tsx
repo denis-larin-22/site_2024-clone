@@ -57,17 +57,11 @@ export default function CatalogItem({ catalogItem }: IProps) {
                     {/* Collection name field*/}
                     <p className={`mb-1 ${openSansFont.className} uppercase text-3xs mobile:text-xs ${isFabricOfTheWeek ? "text-white" : "text-t-gray-text"}`}>{collection}</p>
                     {/* Product name field*/}
-                    <p className={`mb-[18px] text-sm mobile:text-xl font-bold ${isFabricOfTheWeek ? "text-white" : "text-t-blue-dark"}`}>{name}</p>
+                    <p className={`mb-[18px] text-sm text-left mobile:text-xl font-bold ${isFabricOfTheWeek ? "text-white" : "text-t-blue-dark"}`}>{name}</p>
                     {/* Cashback field (by condition)*/}
                     {cashback === undefined ? null : <p className="absolute top-0 mobile:top-2 right-2 mobile:right-3">
                         <CoinIcon />
                     </p>}
-                    {/* Special Offer field (by condition)*/}
-                    {/* {specialOffer === undefined ? null : <p className="w-[89px] mobile:w-[113px] pt-0.5 mobile:pt-1.5 mobile:pb-[5px] px-1.5 absolute -top-[21px] mobile:-top-[31px] right-0 flex justify-end text-xxs mobile:text-xs font-bold text-[#F79D15] bg-[#FFEFD1] rounded-full">
-                        <FireIcon className="absolute left-1.5 bottom-0.5 mobile:bottom-1" />
-                        {specialOffer}
-                    </p>} */}
-
                     {specialOffer === undefined ? null :
                         <p className="absolute right-0 -top-5 mobile:-top-7 inline-flex h-[18px] mobile:h-[25px] w-[89px] mobile:w-[113px] pr-1.5 mobile:pr-[11px] rounded-[36px] bg-[#FFEFD1] text-xxs mobile:text-xs text-[#F79D15] font-bold items-center justify-end">
                             <span className="absolute left-[5px] mobile:left-[7px] bottom-0.5 mobile:bottom-1">
@@ -123,7 +117,7 @@ export default function CatalogItem({ catalogItem }: IProps) {
                     hideCloseButton
                     classNames={{
                         base: "relative",
-                        body: "p-0"
+                        body: "p-0 grid grid"
                     }}
                 >
                     <ModalContent>

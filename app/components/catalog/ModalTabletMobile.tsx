@@ -44,7 +44,7 @@ export function ModalTabletMobile({ catalogItem, onModalCloseHandler }: IProps) 
                 alt={`Фото варінта тканини для ${name}`}
                 width={1024}
                 height={1366}
-                className={`absolute z-0 top-0 left-0 w-full ${isHide ? 'h-screen' : 'h-[60vh]'} mobile:h-full object-cover duration-200`}
+                className={`relative z-0 top-0 left-0 w-full ${isHide ? 'h-screen' : 'h-[60vh]'} mobile:h-full object-cover duration-200`}
                 onClick={() => setIsHide(!isHide)}
             />
 
@@ -69,7 +69,7 @@ export function ModalTabletMobile({ catalogItem, onModalCloseHandler }: IProps) 
                     ))}
                 </ul>
 
-                {!isHide && <section className="p-9 mobile:p-10 mt-5 rounded-2xl bg-[#FAFAFA] text-t-blue-dark">
+                {!isHide && <section className="p-9 mobile:p-10 mt-5 max-h-[50vh] rounded-2xl bg-[#FAFAFA] text-t-blue-dark overflow-y-auto hide-scrollbar ">
                     <div>
                         <div className={`${openSansFont.className} flex items-center justify-between`}>
                             <p className="text-[#AEB1BA] text-xs">{type.toUpperCase()} <span className="text-t-blue-dark">/</span> {collection.toUpperCase()}</p>

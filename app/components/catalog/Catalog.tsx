@@ -8,7 +8,7 @@ export default function Catalog() {
 
     return (
         <>
-            <div className="flex mobile:hidden justify-end w-screen pr-5 mb-8">
+            <div className="flex mobile:hidden w-screen pl-5 mb-8">
                 <Link href={"/"}>
                     <Image
                         alt='Piramid logo'
