@@ -38,7 +38,7 @@ export default function CatalogItem({ catalogItem }: IProps) {
         <>
             <button
                 onClick={onOpen}
-                className="group relative inline-flex w-full mobile:max-w-[282px] h-[231px] mobile:h-[381px] rounded-xl overflow-hidden mobile:hover:ring-4 ring-offset-4 ring-t-blue/50 duration-400"
+                className="group relative inline-flex w-full mobile:max-w-[282px] h-[231px] mobile:h-[381px] rounded-xl overflow-hidden mobile:hover:ring-4 ring-offset-4 ring-t-blue/40 duration-400"
             >
                 <Image
                     alt={`Фото ${type} ${collection}`}
@@ -46,7 +46,7 @@ export default function CatalogItem({ catalogItem }: IProps) {
                     width={282}
                     height={381}
                     loading="lazy"
-                    className="w-full h-full object-cover group-hover:scale-110 duration-150"
+                    className="w-full h-full object-cover group-hover:scale-105 duration-150"
                 />
                 {/* Price category field*/}
                 <p className={`${openSansFont.className} px-2 mobile:px-[14px] py-0 mobile:py-1 bg-t-pale absolute top-4 right-0 text-[10px] mobile:text-sm text-t-blue-dark rounded-tl-full rounded-bl-full ${roundingExternalCorners}`}>

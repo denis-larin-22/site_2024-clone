@@ -38,9 +38,9 @@ export function Filters() {
                         <DropdownFilterMultiple
                             key={index}
                             filterOption={filter}
-                            // styles={styles}
                             isOpen={isOpen}
                             onToggle={() => handleToggle(index)}
+                            wrapperStyles={(openFilterIndex !== null && openFilterIndex !== index) ? 'grayscale mobile:grayscale-0 opacity-40 mobile:opacity-100 duration-150' : ''}
                         />
                     )
                 } else {
@@ -48,9 +48,9 @@ export function Filters() {
                         <DropdownFilterSingle
                             key={index}
                             filterOption={filter}
-                            // styles={styles}
                             isOpen={isOpen}
                             onToggle={() => handleToggle(index)}
+                            wrapperStyles={(openFilterIndex !== null && openFilterIndex !== index) ? 'grayscale mobile:grayscale-0 opacity-40 mobile:opacity-100 duration-150' : ''}
                         />
                     )
                 }
@@ -75,12 +75,12 @@ function getFiltersOptions(): IFilterOption[] {
         title: "Дизайн",
         options: [{
             option: "Однотонний", optionIcon: <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M1.3 1.3V11.7H11.7V1.3H1.3ZM1.3 0C0.58203 0 0 0.58203 0 1.3V11.7C0 12.418 0.58203 13 1.3 13H11.7C12.418 13 13 12.418 13 11.7V1.3C13 0.58203 12.418 0 11.7 0H1.3Z" fill="#0E0050" />
+                <path fillRule="evenodd" clipRule="evenodd" d="M1.3 1.3V11.7H11.7V1.3H1.3ZM1.3 0C0.58203 0 0 0.58203 0 1.3V11.7C0 12.418 0.58203 13 1.3 13H11.7C12.418 13 13 12.418 13 11.7V1.3C13 0.58203 12.418 0 11.7 0H1.3Z" fill="#0E0050" />
             </svg>
 
         }, {
             option: "З малюнком", optionIcon: <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M1.3 0C0.58203 0 0 0.58203 0 1.3V11.7C0 12.418 0.58203 13 1.3 13H11.7C12.418 13 13 12.418 13 11.7V1.3C13 0.58203 12.418 0 11.7 0H1.3ZM6.88076 1.3H4.81924L1.3 4.81924V6.88076L6.88076 1.3ZM1.3 8.71924V10.7808L10.7808 1.3H8.71924L1.3 8.71924ZM11.7 2.21924L2.21924 11.7H5.51541L11.7 5.00003V2.21924ZM11.7 6.91664L7.28459 11.7H9.48076L11.7 9.48076V6.91664ZM11.7 11.3192L11.3192 11.7H11.7V11.3192ZM1.3 2.98076L2.98076 1.3H1.3V2.98076Z" fill="#0E0050" />
+                <path fillRule="evenodd" clipRule="evenodd" d="M1.3 0C0.58203 0 0 0.58203 0 1.3V11.7C0 12.418 0.58203 13 1.3 13H11.7C12.418 13 13 12.418 13 11.7V1.3C13 0.58203 12.418 0 11.7 0H1.3ZM6.88076 1.3H4.81924L1.3 4.81924V6.88076L6.88076 1.3ZM1.3 8.71924V10.7808L10.7808 1.3H8.71924L1.3 8.71924ZM11.7 2.21924L2.21924 11.7H5.51541L11.7 5.00003V2.21924ZM11.7 6.91664L7.28459 11.7H9.48076L11.7 9.48076V6.91664ZM11.7 11.3192L11.3192 11.7H11.7V11.3192ZM1.3 2.98076L2.98076 1.3H1.3V2.98076Z" fill="#0E0050" />
             </svg>
 
         }],
@@ -90,7 +90,7 @@ function getFiltersOptions(): IFilterOption[] {
         title: "Прозорість",
         options: [{
             option: "Напівпрозорі", optionIcon: <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M0.0189448 6C0.00639146 6.16502 0 6.33176 0 6.5C0 6.66824 0.00639146 6.83498 0.0189448 7C0.274257 10.3562 3.07839 13 6.5 13C9.92162 13 12.7257 10.3562 12.9811 7C12.9936 6.83498 13 6.66824 13 6.5C13 6.33176 12.9936 6.16502 12.9811 6C12.7257 2.64378 9.92162 0 6.5 0C3.07839 0 0.274257 2.64378 0.0189448 6ZM1.02242 7C1.27504 9.80325 3.63098 12 6.5 12C9.36902 12 11.725 9.80325 11.9776 7H1.02242ZM11.9776 6H1.02242C1.27504 3.19675 3.63098 1 6.5 1C9.36902 1 11.725 3.19675 11.9776 6Z" fill="#0E0050" />
+                <path fillRule="evenodd" clipRule="evenodd" d="M0.0189448 6C0.00639146 6.16502 0 6.33176 0 6.5C0 6.66824 0.00639146 6.83498 0.0189448 7C0.274257 10.3562 3.07839 13 6.5 13C9.92162 13 12.7257 10.3562 12.9811 7C12.9936 6.83498 13 6.66824 13 6.5C13 6.33176 12.9936 6.16502 12.9811 6C12.7257 2.64378 9.92162 0 6.5 0C3.07839 0 0.274257 2.64378 0.0189448 6ZM1.02242 7C1.27504 9.80325 3.63098 12 6.5 12C9.36902 12 11.725 9.80325 11.9776 7H1.02242ZM11.9776 6H1.02242C1.27504 3.19675 3.63098 1 6.5 1C9.36902 1 11.725 3.19675 11.9776 6Z" fill="#0E0050" />
                 <path d="M6.5 12.5C10.0899 12.5 13 9.58985 13 6H0C0 9.58985 2.91015 12.5 6.5 12.5Z" fill="#0E0050" />
             </svg>
 

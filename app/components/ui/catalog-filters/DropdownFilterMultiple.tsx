@@ -8,7 +8,7 @@ import { openSansFont } from "../fonts";
 import { ArrowIcon } from "../../assets/icons";
 import { getFilterAnimation } from "@/app/lib/utils/animations";
 
-export function DropdownFilterMultiple({ filterOption, isOpen, onToggle }: IFilterProps) {
+export function DropdownFilterMultiple({ filterOption, isOpen, onToggle, wrapperStyles }: IFilterProps) {
     const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
 
     const toggleOption = (option: string) => {
@@ -26,7 +26,7 @@ export function DropdownFilterMultiple({ filterOption, isOpen, onToggle }: IFilt
     const { containerAnimation, itemAnimation } = getFilterAnimation()
 
     return (
-        <div className="relative text-t-blue-dark">
+        <div className={`text-t-blue-dark relative mt-1 ${wrapperStyles ? wrapperStyles : ''}`}>
             <Button
                 className="py-3 px-4 rounded-3xl text-t-blue-dark bg-white text-sm font-medium flex items-center justify-between gap-4"
                 onClick={onToggle}
@@ -52,7 +52,7 @@ export function DropdownFilterMultiple({ filterOption, isOpen, onToggle }: IFilt
                         {filterOption.options.map(({ option, optionIcon }, index) => (
                             <motion.li
                                 key={index}
-                                className={`${selectedOptions.includes(option) ? 'bg-t-blue text-white mobile:text-inherit mobile:bg-t-pale' : 'bg-white mobile:bg-none'} h-7 relative py-[9px] mobile:py-1 px-[18px] mobile:px-3 cursor-pointer p-1 rounded-3xl mobile:hover:bg-t-pale duration-150 flex items-center ${optionIcon === undefined ? '' : 'gap-x-2'}`}
+                                className={`${selectedOptions.includes(option) ? 'bg-t-blue text-white mobile:text-inherit mobile:bg-t-pale' : 'bg-white mobile:bg-none'} h-7 relative py-[9px] mobile:py-1 px-[18px] mobile:px-3 cursor-pointer p-1 rounded-3xl mobile:hover:bg-t-pale active:scale-95 duration-150 flex items-center ${optionIcon === undefined ? '' : 'gap-x-2'}`}
                                 variants={itemAnimation}
                                 onClick={() => toggleOption(option)}
                             >

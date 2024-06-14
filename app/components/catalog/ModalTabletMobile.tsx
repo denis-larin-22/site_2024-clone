@@ -16,6 +16,8 @@ export function ModalTabletMobile({ catalogItem, onModalCloseHandler }: IProps) 
     const { availableColors, collection, composition, fabricTexture, guarantee, isInStock, maxWidth, name, opacity, type, waterproofnessLevel, label, specialOffer } = catalogItem;
     // Default card image (first image from available ones)
     const [selectedColor, setSelectedColor] = useState<string>(availableColors[0]);
+    // To hide tachinical information
+    const [isHide, setIsHide] = useState<boolean>(false);
 
     const technicalInformation = [
         { item: "Затемнення", info: opacity },
@@ -28,13 +30,13 @@ export function ModalTabletMobile({ catalogItem, onModalCloseHandler }: IProps) 
 
     return (
         <>
-            <CloseArrowButton btnHandler={onModalCloseHandler} className="absolute left-5 mobile:left-10 top-3 mobile:top-12" />
+            <CloseArrowButton btnHandler={onModalCloseHandler} className="absolute z-10 left-5 mobile:left-10 top-3 mobile:top-12" />
             <Image
                 alt="Piramid logo"
                 src={"/assets/images/full_logo_small.svg"}
                 width={129}
                 height={25}
-                className="inline mobile:hidden absolute top-[15px] right-5"
+                className="inline mobile:hidden absolute z-10 top-[15px] right-5"
             />
 
             <Image
@@ -42,10 +44,11 @@ export function ModalTabletMobile({ catalogItem, onModalCloseHandler }: IProps) 
                 alt={`Фото варінта тканини для ${name}`}
                 width={1024}
                 height={1366}
-                className="absolute -z-20 top-0 left-0 w-full h-[60vh] mobile:h-full object-cover"
+                className={`absolute z-0 top-0 left-0 w-full ${isHide ? 'h-screen' : 'h-[60vh]'} mobile:h-full object-cover duration-200`}
+                onClick={() => setIsHide(!isHide)}
             />
 
-            <div className="absolute bottom-0 left-0 right-0 p-0 mobile:p-9">
+            <div className={`absolute ${isHide ? 'bottom-12' : 'bottom-0'} left-0 right-0 p-0 mobile:p-9 duration-200`}>
                 <ul className="flex gap-2.5 pl-5 mobile:pl-0">
                     {availableColors.map((color, index) => (
                         <li
@@ -66,7 +69,7 @@ export function ModalTabletMobile({ catalogItem, onModalCloseHandler }: IProps) 
                     ))}
                 </ul>
 
-                <section className="p-9 mobile:p-10 mt-5 rounded-2xl bg-[#FAFAFA] text-t-blue-dark">
+                {!isHide && <section className="p-9 mobile:p-10 mt-5 rounded-2xl bg-[#FAFAFA] text-t-blue-dark">
                     <div>
                         <div className={`${openSansFont.className} flex items-center justify-between`}>
                             <p className="text-[#AEB1BA] text-xs">{type.toUpperCase()} <span className="text-t-blue-dark">/</span> {collection.toUpperCase()}</p>
@@ -102,7 +105,7 @@ export function ModalTabletMobile({ catalogItem, onModalCloseHandler }: IProps) 
                             ))}
                         </ul>
                     </div>
-                </section>
+                </section>}
             </div>
         </>
     )
