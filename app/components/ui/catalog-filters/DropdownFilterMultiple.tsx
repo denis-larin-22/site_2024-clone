@@ -50,15 +50,14 @@ export function DropdownFilterMultiple({ filterOption, isOpen, onToggle, wrapper
                         animate="visible"
                     >
                         {filterOption.options.map(({ option, optionIcon }, index) => (
-                            <motion.li
+                            <li
                                 key={index}
                                 className={`${selectedOptions.includes(option) ? 'bg-t-blue text-white mobile:text-inherit mobile:bg-t-pale' : 'bg-white mobile:bg-none'} h-7 relative py-[9px] mobile:py-1 px-[18px] mobile:px-3 cursor-pointer p-1 rounded-3xl mobile:hover:bg-t-pale active:scale-95 duration-150 flex items-center ${optionIcon === undefined ? '' : 'gap-x-2'}`}
-                                variants={itemAnimation}
                                 onClick={() => toggleOption(option)}
                             >
                                 {optionIcon === undefined ? null : <span className="inline-block h-5 absolute left-1 bottom-[5px]">{optionIcon}</span>}
                                 <p className={`${optionIcon ? 'ml-2.5 mobile:ml-[19px]' : ''} text-nowrap flex items-center gap-x-[5px] text-sm font-normal whitespace-nowrap`}>{option}</p>
-                            </motion.li>
+                            </li>
                         ))}
                     </motion.ul>
                     {/* Blured space (mobile) */}

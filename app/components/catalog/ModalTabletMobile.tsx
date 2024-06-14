@@ -48,7 +48,7 @@ export function ModalTabletMobile({ catalogItem, onModalCloseHandler }: IProps) 
                 onClick={() => setIsHide(!isHide)}
             />
 
-            <div className={`absolute ${isHide ? 'bottom-12' : 'bottom-0'} left-0 right-0 p-0 mobile:p-9 duration-200`}>
+            <div className={`wrap absolute ${isHide ? 'bottom-12' : 'bottom-0'} left-0 right-0 p-0 mobile:p-9 duration-200`}>
                 <ul className="flex gap-2.5 pl-5 mobile:pl-0">
                     {availableColors.map((color, index) => (
                         <li
@@ -69,7 +69,7 @@ export function ModalTabletMobile({ catalogItem, onModalCloseHandler }: IProps) 
                     ))}
                 </ul>
 
-                {!isHide && <section className="p-9 mobile:p-10 mt-5 max-h-[50vh] rounded-2xl bg-[#FAFAFA] text-t-blue-dark overflow-y-auto hide-scrollbar ">
+                {!isHide && <section className="p-9 mobile:p-10 mt-5 max-h-[50vh] rounded-2xl bg-[#FAFAFA] text-t-blue-dark overflow-y-auto hide-scrollbar">
                     <div>
                         <div className={`${openSansFont.className} flex items-center justify-between`}>
                             <p className="text-[#AEB1BA] text-xs">{type.toUpperCase()} <span className="text-t-blue-dark">/</span> {collection.toUpperCase()}</p>

@@ -37,10 +37,9 @@ export function DropdownFilterSingle({ filterOption, isOpen, onToggle, wrapperSt
                         animate="visible"
                     >
                         {filterOption.options.map(({ option, optionIcon }, index) => (
-                            <motion.li
+                            <li
                                 key={index}
                                 className={`${selectedOption === option ? 'bg-white mobile:bg-t-pale' : 'bg-none'} h-[38px] mobile:h-7 px-[18px] mobile:px-3 mobile:py-1 cursor-pointer rounded-3xl text-sm hover:bg-t-pale duration-150 flex items-center gap-x-3 mobile:gap-x-1.5`}
-                                variants={itemAnimation}
                                 onClick={() => {
                                     if (!filterOption.title) {
                                         setOptionTitle(option);
@@ -51,7 +50,7 @@ export function DropdownFilterSingle({ filterOption, isOpen, onToggle, wrapperSt
                             >
                                 {optionIcon !== undefined ? <span className="inline-block h-fit">{optionIcon}</span> : null}
                                 <p className="flex items-center gap-1 text-sm font-normal whitespace-nowrap">{option}</p>
-                            </motion.li>
+                            </li>
                         ))}
                     </motion.ul>
                     {/* Blured space (mobile) */}
