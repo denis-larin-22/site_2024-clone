@@ -19,7 +19,7 @@ export function ModalTabletMobile({ productItem, onModalCloseHandler }: IProps) 
         collection,
         color,
         description,
-        design_id,
+        design,
         discount,
         id,
         image_url,
