@@ -5,10 +5,15 @@ import { DropdownFilterMultiple } from "../ui/catalog-filters/DropdownFilterMult
 import { DropdownFilterSingle } from "../ui/catalog-filters/DropdownFilterSingle"
 import { FilterByLevelPrice } from "../ui/catalog-filters/FilterByLevelPrice"
 
-export function Filters() {
+interface IProps {
+    options: any[];
+}
+
+export function Filters({ options }: IProps) {
     const containerRef = useRef<HTMLDivElement>(null);
     const [openFilterIndex, setOpenFilterIndex] = useState<number | null>(null);
     const filters = getFiltersOptions();
+    // const filters = [...options,];
 
     const handleToggle = (index: number) => {
         setOpenFilterIndex(prevIndex => (prevIndex === index ? null : index));

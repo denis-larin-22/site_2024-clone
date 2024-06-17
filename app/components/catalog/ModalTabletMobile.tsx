@@ -1,31 +1,44 @@
 'use client'
 
 import Image from "next/image";
-import { ICatalogItem } from "./catalog-list";
 import { useState } from "react";
 import { openSansFont } from "../ui/fonts";
 import { FireIcon } from "../assets/icons";
+import { IProductItem } from "@/app/lib/types";
 
 interface IProps {
-    catalogItem: ICatalogItem,
+    productItem: IProductItem,
     onModalCloseHandler: () => void
 }
 
-export function ModalTabletMobile({ catalogItem, onModalCloseHandler }: IProps) {
+export function ModalTabletMobile({ productItem, onModalCloseHandler }: IProps) {
     // Catalog item properties
-    const { availableColors, collection, composition, fabricTexture, guarantee, isInStock, maxWidth, name, opacity, type, waterproofnessLevel, label, specialOffer } = catalogItem;
+    const {
+        availability,
+        category,
+        collection,
+        color,
+        description,
+        design_id,
+        discount,
+        id,
+        image_url,
+        name,
+        price,
+        transparency
+    } = productItem;
     // Default card image (first image from available ones)
-    const [selectedColor, setSelectedColor] = useState<string>(availableColors[0]);
+    // const [selectedColor, setSelectedColor] = useState<string>(availableColors[0]);
     // To hide tachinical information
     const [isHide, setIsHide] = useState<boolean>(false);
 
     const technicalInformation = [
-        { item: "Затемнення", info: opacity },
-        { item: "Водостійкість", info: waterproofnessLevel },
-        { item: "Фактура тканини", info: fabricTexture },
-        { item: "Склад", info: composition },
-        { item: "Гарантія", info: guarantee },
-        { item: "Ширина рулону", info: maxWidth }
+        { item: "Затемнення", info: transparency.name },
+        { item: "Водостійкість", info: 'відсутнє' },
+        { item: "Фактура тканини", info: 'відсутнє' },
+        { item: "Склад", info: 'відсутнє' },
+        { item: "Гарантія", info: 'відсутнє' },
+        { item: "Ширина рулону", info: 'відсутнє' }
     ];
 
     return (
@@ -40,7 +53,7 @@ export function ModalTabletMobile({ catalogItem, onModalCloseHandler }: IProps) 
             />
 
             <Image
-                src={selectedColor}
+                src={image_url !== null ? image_url : "https://www.pro-of.com.ua/wp-content/uploads/2018/02/ab35c5ac5b7d2dda5ddc48c01e4efa15.jpg"}
                 alt={`Фото варінта тканини для ${name}`}
                 width={1024}
                 height={1366}
@@ -50,21 +63,23 @@ export function ModalTabletMobile({ catalogItem, onModalCloseHandler }: IProps) 
 
             <div className={`wrap absolute ${isHide ? 'bottom-12' : 'bottom-0'} left-0 right-0 p-0 mobile:p-9 duration-200`}>
                 <ul className="flex gap-2.5 pl-5 mobile:pl-0">
-                    {availableColors.map((color, index) => (
+                    {[1, 2, 3, 4].map((color, index) => (
                         <li
                             key={index}
-                            onClick={() => {
-                                setSelectedColor(color);
-                            }}
+                        // onClick={() => {
+                        //     setSelectedColor(color);
+                        // }}
                         >
-                            <Image
+                            <div className="w-[47px] h-[46px] rounded-md ring-1 hover:ring-offset-1 hover:ring-[#10005B] cursor-not-allowed"></div>
+
+                            {/* <Image
                                 src={color}
                                 alt="Варіант тканини"
                                 width={47}
                                 height={46}
                                 loading="lazy"
                                 className={`cursor-pointer rounded-md ring-1 duration-150 ${selectedColor === color ? "ring-[#10005B]" : "ring-t-gray-text"}`}
-                            />
+                            /> */}
                         </li>
                     ))}
                 </ul>
@@ -72,23 +87,24 @@ export function ModalTabletMobile({ catalogItem, onModalCloseHandler }: IProps) 
                 {!isHide && <section className="p-9 mobile:p-10 mt-5 max-h-[50vh] rounded-2xl bg-[#FAFAFA] text-t-blue-dark overflow-y-auto hide-scrollbar">
                     <div>
                         <div className={`${openSansFont.className} flex items-center justify-between`}>
-                            <p className="text-[#AEB1BA] text-xs">{type.toUpperCase()} <span className="text-t-blue-dark">/</span> {collection.toUpperCase()}</p>
-                            <p className={`${isInStock === "в наявності" ? "text-t-green" : "text-[#FF4242]"} text-sm`}>{isInStock}</p>
+                            <p className="text-[#AEB1BA] text-xs uppercase">{category.name} <span className="text-t-blue-dark uppercase">/</span> {collection.name}</p>
+                            <p className={`${availability.status === 'Status 1' ? "text-t-green" : "text-[#FF4242]"} text-sm`}>{availability.status}</p>
                         </div>
                         <h5 className="text-[32px] mt-3 mb-5 mobile:mb-8">{name}</h5>
                         <div className="w-full flex items-center justify-between">
                             <div className="flex items-center gap-[15px]">
-                                {specialOffer === undefined ? null : <p className="relative w-[113px] h-[25px] py-1 px-3 flex items-center justify-end text-xs font-bold text-[#F79D15] bg-[#FFEFD1] rounded-full">
+                                {discount === null ? null : <p className="relative w-[113px] h-[25px] py-1 px-3 flex items-center justify-end text-xs font-bold text-[#F79D15] bg-[#FFEFD1] rounded-full">
                                     <FireIcon className="absolute left-[6px] bottom-1" />
-                                    {specialOffer}
+                                    Акція {discount.discount_percentage}%
                                 </p>}
-                                <p className={`h-[25px] w-fit px-[14px] py-1 rounded-full text-[12px] font-bold  ${label === "Новинка" ?
+                                {/* TO_DO!!! */}
+                                {/* <p className={`h-[25px] w-fit px-[14px] py-1 rounded-full text-[12px] font-bold  ${label === "Новинка" ?
                                     "text-white bg-t-blue"
                                     :
                                     label === "Розпродаж" ? "text-[#F79D15] bg-[#FFEFD1]" : "text-t-blue bg-[#DDE8FF]"}`
                                 }>
                                     {label}
-                                </p>
+                                </p> */}
                             </div>
                         </div>
                     </div>
