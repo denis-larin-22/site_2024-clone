@@ -1,27 +1,33 @@
-import AccordionSection from "./components/main-page/AccordionSection";
-import BusinessPromo from "./components/main-page/BusinessPromo";
-import CarouselSection from "./components/main-page/CarouselSection";
-import HeroSection from "./components/main-page/HeroSection";
-import InfoPanel from "./components/main-page/InfoSection";
-import PromoBanner from "./components/main-page/PromoBanner";
-import TabsSection from "./components/main-page/TabsSection";
-import VideoBanner from "./components/main-page/VideoBanner";
 import Footer from "./components/ui/Footer";
 import Header from "./components/ui/Header";
+import { IComponentItem, mainComponentsList } from "./lib/components-lib";
+import { getMainPageComponentOrder } from "./lib/contentful/contentful-api";
 
-export default function Home() {
+async function getComponentListForRender(): Promise<(IComponentItem | undefined)[]> {
+  const mainPageComponentOrder = await getMainPageComponentOrder();
+
+  const result = mainPageComponentOrder.map((item) => {
+    const componentOrUndefined = mainComponentsList[item.componentId];
+    if (!componentOrUndefined) return
+
+    return componentOrUndefined;
+  })
+
+  return result
+}
+
+export default async function Home() {
+  const pageComponentOrder = await getComponentListForRender();
+
   return (
     <div className="bg-t-pale relative">
       <Header />
       <main className="overflow-hidden">
-        <HeroSection />
-        <VideoBanner />
-        <TabsSection />
-        <AccordionSection />
-        <PromoBanner />
-        <InfoPanel />
-        <CarouselSection />
-        <BusinessPromo />
+        {pageComponentOrder.map((component, index) => {
+          if (!component) return null;
+
+          return <div key={index}>{component.component}</div>;
+        })}
       </main>
       <Footer />
     </div >
