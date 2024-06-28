@@ -4,17 +4,24 @@ import { Button } from "@nextui-org/react";
 import { useState } from 'react';
 import { motion } from "framer-motion";
 import { openSansFont } from "../fonts";
-import { IFilterProps } from "./types";
 import { ArrowIcon } from "../../assets/icons";
 import { getFilterAnimation } from "@/app/lib/utils/animations";
+import { IFilterOption } from "@/app/lib/types";
+
+export interface IProps {
+    filterOption: IFilterOption,
+    isOpen: boolean,
+    onToggle: () => void,
+    wrapperStyles?: string,
+}
 
 // Dropdown list of options with single choice
-export function DropdownFilterSingle({ filterOption, isOpen, onToggle, wrapperStyles }: IFilterProps) {
-    const [optionTitle, setOptionTitle] = useState<string>(filterOption.title || filterOption.options[0].option);
+export function DropdownFilterSingle({ filterOption, isOpen, onToggle, wrapperStyles }: IProps) {
+    const [optionTitle, setOptionTitle] = useState<string>(filterOption.title || filterOption.options[0].name);
     const [selectedOption, setSelectedOption] = useState<string>(optionTitle);
 
-    // Animation parameters (Framer Motion lib.)
-    const { containerAnimation, itemAnimation } = getFilterAnimation();
+    // Animation parameters
+    const { containerAnimation } = getFilterAnimation();
 
     return (
         <div className={`relative text-t-blue-dark mt-1 ${wrapperStyles ? wrapperStyles : ''}`}>
@@ -36,20 +43,20 @@ export function DropdownFilterSingle({ filterOption, isOpen, onToggle, wrapperSt
                         initial="hidden"
                         animate="visible"
                     >
-                        {filterOption.options.map(({ option, optionIcon }, index) => (
+                        {filterOption.options.map(({ name, icon }, index) => (
                             <li
                                 key={index}
-                                className={`${selectedOption === option ? 'bg-white mobile:bg-t-pale' : 'bg-none'} h-[38px] mobile:h-7 px-[18px] mobile:px-3 mobile:py-1 cursor-pointer rounded-3xl text-sm hover:bg-t-pale duration-150 flex items-center gap-x-3 mobile:gap-x-1.5`}
+                                className={`${selectedOption === name ? 'bg-white mobile:bg-t-pale' : 'bg-none'} h-[38px] mobile:h-7 px-[18px] mobile:px-3 mobile:py-1 cursor-pointer rounded-3xl text-sm hover:bg-t-pale duration-150 flex items-center gap-x-3 mobile:gap-x-1.5`}
                                 onClick={() => {
                                     if (!filterOption.title) {
-                                        setOptionTitle(option);
+                                        setOptionTitle(name);
                                     }
-                                    setSelectedOption(option);
+                                    setSelectedOption(name);
                                     onToggle();
                                 }}
                             >
-                                {optionIcon !== undefined ? <span className="inline-block h-fit">{optionIcon}</span> : null}
-                                <p className="flex items-center gap-1 text-sm font-normal whitespace-nowrap">{option}</p>
+                                {icon !== undefined ? <span className="inline-block h-fit">{icon}</span> : null}
+                                <p className="flex items-center gap-1 text-sm font-normal whitespace-nowrap">{name}</p>
                             </li>
                         ))}
                     </motion.ul>

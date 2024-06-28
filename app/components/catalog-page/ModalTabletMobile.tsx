@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useState } from "react";
 import { openSansFont } from "../ui/fonts";
-import { FireIcon } from "../assets/icons";
+import { CloseArrowButton, FireIcon } from "../assets/icons";
 import { IProductItem } from "@/app/lib/types";
 
 interface IProps {
@@ -124,16 +124,5 @@ export function ModalTabletMobile({ productItem, onModalCloseHandler }: IProps) 
                 </section>}
             </div>
         </>
-    )
-}
-
-function CloseArrowButton({ className, btnHandler }: { className?: string, iconColor?: string, btnHandler: () => void }) {
-    return (
-        <button className={`px-4 py-1 bg-t-blue rounded-2xl max-w-fit flex items-stretch gap-x-[13px] text-sm text-white ${className}`} onClick={btnHandler}>
-            <svg width="24" height="19" viewBox="0 0 24 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M22.9995 9.48293L0.998356 9.48468M0.998356 9.48468L8.77653 17.2629M0.998356 9.48468L8.77653 1.70651" stroke="#F6F5F8" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-            <span className="">Назад</span>
-        </button>
     )
 }

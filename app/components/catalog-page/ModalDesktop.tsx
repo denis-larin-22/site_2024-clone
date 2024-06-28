@@ -2,8 +2,7 @@
 
 import Image from "next/image";
 import { Modal, ModalContent, useDisclosure } from "@nextui-org/modal";
-import { useState } from "react";
-import { FireIcon, ZoomIcon } from "../assets/icons";
+import { CloseButton, FireIcon, ZoomIcon } from "../assets/icons";
 import { openSansFont } from "../ui/fonts";
 import { IProductItem } from "@/app/lib/types";
 
@@ -148,16 +147,5 @@ export function ModalDesktop({ productItem, onModalCloseHandler }: IProps) {
                 </div>
             </section>
         </>
-    )
-}
-
-function CloseButton({ className, iconColor = "white", btnHandler }: { className?: string, iconColor?: string, btnHandler: () => void }) {
-    return (
-        <button className={`w-fit h-fit ${className}`} onClick={btnHandler}>
-            <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path fillRule="evenodd" clipRule="evenodd" d="M18.5318 0.466859C19.0288 0.963795 19.0288 1.76949 18.5318 2.26642L2.26837 18.5299C1.77143 19.0268 0.965742 19.0268 0.468806 18.5299C-0.0281295 18.0329 -0.0281297 17.2273 0.468807 16.7303L16.7323 0.466859C17.2292 -0.0300766 18.0349 -0.0300766 18.5318 0.466859Z" fill={iconColor} />
-                <path fillRule="evenodd" clipRule="evenodd" d="M18.5314 18.5275C18.0345 19.0245 17.2288 19.0245 16.7319 18.5275L0.468405 2.26406C-0.028531 1.76713 -0.0285307 0.961434 0.468405 0.464499C0.965341 -0.032437 1.77103 -0.0324372 2.26797 0.464499L18.5314 16.728C19.0284 17.2249 19.0284 18.0306 18.5314 18.5275Z" fill={iconColor} />
-            </svg>
-        </button>
     )
 }

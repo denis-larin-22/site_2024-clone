@@ -3,12 +3,19 @@
 import { Button } from "@nextui-org/react";
 import { useState } from 'react';
 import { motion } from "framer-motion";
-import { IFilterProps } from "./types";
 import { openSansFont } from "../fonts";
 import { ArrowIcon } from "../../assets/icons";
 import { getFilterAnimation } from "@/app/lib/utils/animations";
+import { IFilterOption } from "@/app/lib/types";
 
-export function DropdownFilterMultiple({ filterOption, isOpen, onToggle, wrapperStyles }: IFilterProps) {
+export interface IProps {
+    filterOption: IFilterOption,
+    isOpen: boolean,
+    onToggle: () => void,
+    wrapperStyles?: string,
+}
+
+export function DropdownFilterMultiple({ filterOption, isOpen, onToggle, wrapperStyles }: IProps) {
     const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
 
     const toggleOption = (option: string) => {
@@ -22,8 +29,8 @@ export function DropdownFilterMultiple({ filterOption, isOpen, onToggle, wrapper
         setSelectedOptions(updatedOptions);
     };
 
-    // Animation parameters (Framer Motion lib.)
-    const { containerAnimation, itemAnimation } = getFilterAnimation()
+    // Animation parameters
+    const { containerAnimation } = getFilterAnimation()
 
     return (
         <div className={`text-t-blue-dark relative mt-1 ${wrapperStyles ? wrapperStyles : ''}`}>
@@ -49,14 +56,14 @@ export function DropdownFilterMultiple({ filterOption, isOpen, onToggle, wrapper
                         initial="hidden"
                         animate="visible"
                     >
-                        {filterOption.options.map(({ option, optionIcon }, index) => (
+                        {filterOption.options.map(({ name, icon }, index) => (
                             <li
                                 key={index}
-                                className={`${selectedOptions.includes(option) ? 'bg-t-blue text-white mobile:text-inherit mobile:bg-t-pale' : 'bg-white mobile:bg-none'} h-7 relative py-[9px] mobile:py-1 px-[18px] mobile:px-3 cursor-pointer p-1 rounded-3xl mobile:hover:bg-t-pale active:scale-95 duration-150 flex items-center ${optionIcon === undefined ? '' : 'gap-x-2'}`}
-                                onClick={() => toggleOption(option)}
+                                className={`${selectedOptions.includes(name) ? 'bg-t-blue text-white mobile:text-inherit mobile:bg-t-pale' : 'bg-white mobile:bg-none'} h-7 relative py-[9px] mobile:py-1 px-[18px] mobile:px-3 cursor-pointer p-1 rounded-3xl mobile:hover:bg-t-pale active:scale-95 duration-150 flex items-center ${icon === undefined ? '' : 'gap-x-2'}`}
+                                onClick={() => toggleOption(name)}
                             >
-                                {optionIcon === undefined ? null : <span className="inline-block h-5 absolute left-1 bottom-[5px]">{optionIcon}</span>}
-                                <p className={`${optionIcon ? 'ml-2.5 mobile:ml-[19px]' : ''} text-nowrap flex items-center gap-x-[5px] text-sm font-normal whitespace-nowrap`}>{option}</p>
+                                {icon === undefined ? null : <span className="inline-block h-5 absolute left-1 bottom-[5px]">{icon}</span>}
+                                <p className={`${icon ? 'ml-2.5 mobile:ml-[19px]' : ''} text-nowrap flex items-center gap-x-[5px] text-sm font-normal whitespace-nowrap`}>{name}</p>
                             </li>
                         ))}
                     </motion.ul>

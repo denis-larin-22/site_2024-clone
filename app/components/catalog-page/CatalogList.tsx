@@ -1,6 +1,7 @@
 import { IProductItem } from "@/app/lib/types";
 import CatalogItem from "./CatalogItem";
 import { catalogList } from "./catalog-list";
+import { Suspense } from "react";
 
 interface IProps {
     productList: IProductItem[],

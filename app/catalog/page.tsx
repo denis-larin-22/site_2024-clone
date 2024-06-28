@@ -1,6 +1,6 @@
 import { Metadata } from "next";
-import Catalog from "../components/catalog/Catalog";
-import Navigation from "../components/catalog/Navigation";
+import Catalog from "../components/catalog-page/Catalog";
+import CategoryNavigation from "../components/catalog-page/CategoryNavigation";
 
 export const metadata: Metadata = {
     title: 'Каталог | Piramid',
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
 export default function CatalogPage() {
     return (
         <section className="relative h-dvh w-screen bg-t-pale flex flex-row overflow-hidden">
-            <Navigation />
+            <CategoryNavigation />
             <div className="flex flex-col items-center flex-grow overflow-y-auto overflow-x-hidden ml-0 mobile:ml-24 p-3 mobile:py-[60px]">
                 <Catalog />
             </div>

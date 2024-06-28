@@ -1,3 +1,4 @@
+// Product item from catalog
 export interface IProductItem {
     id: number,
     name: string,
@@ -19,7 +20,7 @@ export interface IProductItem {
     },
     image_url: string | null
 }
-
+// Product attributes
 export interface IColor {
     id: number,
     name: string,
@@ -43,4 +44,14 @@ export interface ICollection {
 export interface ICategory {
     id: number,
     name: string,
+}
+// Filters
+export interface IFilterOption {
+    title?: string,
+    options: {
+        id: number,
+        name: string,
+        icon?: string | JSX.Element
+    }[],
+    multichoice: boolean
 }

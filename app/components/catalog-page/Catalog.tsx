@@ -3,17 +3,12 @@ import CatalogList from './CatalogList';
 import Link from "next/link";
 import { Filters } from './Filters';
 import { IProductItem } from '@/app/lib/types';
-import { fetchCategories, fetchCollections, fetchColors, fetchDesigns, fetchProductsList, fetchTransparencies } from '@/app/lib/api/apiRequests';
+import { fetchProductsList } from '@/app/lib/api/apiRequests';
+import { getFilterOptions } from '@/app/lib/data/getFilterOptions';
 
 export default async function Catalog() {
     const productList: IProductItem[] = await fetchProductsList();
-    // Filters
-    const allColors = await fetchColors();
-    const allDesigns = await fetchDesigns();
-    const allTransparencies = await fetchTransparencies();
-    const allCollections = await fetchCollections();
-    const allCategories = await fetchCategories();
-    const filterOptions = [allColors, allDesigns, allTransparencies, allCollections, allCategories];
+    const filterOptions = await getFilterOptions();
 
     return (
         <>
@@ -28,7 +23,7 @@ export default async function Catalog() {
                 </Link>
             </div>
 
-            <Filters options={filterOptions} />
+            <Filters filterOptions={filterOptions} />
             <CatalogList productList={productList} />
         </>
     );

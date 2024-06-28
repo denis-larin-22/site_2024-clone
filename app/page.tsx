@@ -1,14 +1,29 @@
-import Link from "next/link";
+import AccordionSection from "./components/main-page/AccordionSection";
+import BusinessPromo from "./components/main-page/BusinessPromo";
+import CarouselSection from "./components/main-page/CarouselSection";
+import HeroSection from "./components/main-page/HeroSection";
+import InfoPanel from "./components/main-page/InfoSection";
+import PromoBanner from "./components/main-page/PromoBanner";
+import TabsSection from "./components/main-page/TabsSection";
+import VideoBanner from "./components/main-page/VideoBanner";
+import Footer from "./components/ui/Footer";
+import Header from "./components/ui/Header";
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center gap-5 text-white bg-gradient-to-tl from-blue-600 via-cyan-500 to-blue-800">
-      <div className="text-3xl tracking-widest flex items-center gap-5" style={{ textShadow: '6px 6px 12px rgba(0, 0, 0, 0.7)' }}>
-        <img src="https://piramid.perfectum.cloud/files/piramid/uploads/company/logo.png" alt="Піраміда-жалюзі" />
-        <h1 className="text-[#241a69]">PIRAMID 2024</h1>
-      </div>
-      <p className="text-2xl opacity-60">Soon...</p>
-      <Link className="text-2xl animate-bounce" href="/catalog">Catalog {'>'}</Link >
-    </main>
+    <div className="bg-t-pale relative">
+      <Header />
+      <main className="overflow-hidden">
+        <HeroSection />
+        <VideoBanner />
+        <TabsSection />
+        <AccordionSection />
+        <PromoBanner />
+        <InfoPanel />
+        <CarouselSection />
+        <BusinessPromo />
+      </main>
+      <Footer />
+    </div >
   );
 }

@@ -22,10 +22,13 @@ const config: Config = {
         'mobile': '450px'
       },
       backgroundImage: {
-        "t-blue-green-gradient": "linear-gradient(270deg, rgba(8,255,184,1) 50%, rgba(11,45,226,1) 100%)",
+        "m-blue-green-gradient": "linear-gradient(90deg, #08FFB8 0%, #037ADE 42%, #1000E5 100%)",
       },
       colors: {
-        //template's colors
+        //template's catalog colors
+        'm-blue-dark': '#09022B',
+        'm-green-light': '#07F6BA',
+        //template's catalog colors
         't-dark-text': '#1E1E1E',
         't-blue-dark': '#0E0050',
         't-blue': '#1000E5',
