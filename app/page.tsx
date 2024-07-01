@@ -26,6 +26,8 @@ async function getComponentListForRender(): Promise<(IComponentItem | undefined)
 
 export default async function Home() {
   const pageComponentOrder = await getComponentListForRender();
+  console.log('check');
+
 
   return (
     <div className="bg-t-pale relative">
