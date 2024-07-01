@@ -12,12 +12,12 @@ export default function PromoBanner() {
                 <h4 className="relative z-10 uppercase text-5xl font-bold text-t-blue-dark max-w-[760px]">Дізнайтесь як працює <span className="text-t-blue">Piramid Space</span></h4>
                 <a
                     href="/"
-                    className="relative group text-xl font-semibold text-m-blue-dark inline-flex items-center mx-auto"
+                    className="relative group pr-20 text-xl font-semibold text-m-blue-dark inline-flex items-center mx-auto"
                     onMouseEnter={() => setIsHovered(true)}
                     onMouseLeave={() => setIsHovered(false)}
                 >
                     Замовити демо
-                    <span className="absolute z-10 left-[104%] inline-flex items-center h-0.5 w-[78px] group-hover:w-screen duration-1000 bg-m-blue-dark before:inline-block before:h-3 before:w-3 before:border-t-2 before:border-r-2 before:border-m-blue-dark before:rotate-45 before:absolute before:right-0"></span>
+                    <span className="absolute z-10 left-[72%] inline-flex items-center h-0.5 w-[78px] group-hover:w-screen duration-1000 bg-m-blue-dark before:inline-block before:h-3 before:w-3 before:border-t-2 before:border-r-2 before:border-m-blue-dark before:rotate-45 before:absolute before:right-0 pointer-events-none"></span>
                     <span className="absolute z-10 right-[100vw] group-hover:right-[45vw] top-[147px] inline-flex items-center h-0.5 w-[100vw] duration-1000 bg-m-blue-dark before:inline-block before:h-3 before:w-3 before:border-t-2 before:border-r-2 before:border-m-blue-dark before:rotate-45 before:absolute before:right-0"></span>
                 </a>
             </div>

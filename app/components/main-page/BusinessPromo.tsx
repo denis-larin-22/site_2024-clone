@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { CircleDecoreIcon } from "../assets/icons";
+import { OrderDemoButton } from "../ui/OrderDemoButton";
 
 export default function BusinessPromo() {
     const BLUE_CIRCLE_COLOR = "#0D16E3";
@@ -23,17 +24,17 @@ export default function BusinessPromo() {
                 </div>
                 <h3 className="max-w-[643px] text-[71px] font-bold uppercase leading-tight">Зробіть свій бізнес ще потужнішим</h3>
                 <div className="flex flex-col items-start gap-y-[23px] text-xl font-semibold self-end">
-                    <a href="/" className="relative group ml-5 flex items-center">
+                    <a href="/" className="relative group pr-20 flex items-center">
                         Стати дилером
-                        <span className="absolute left-[104%] inline-flex items-center h-0.5 w-[65px] group-hover:w-52 duration-1000 bg-white before:inline-block before:h-3 before:w-3 before:border-t-2 before:border-r-2 before:border-white before:rotate-45 before:absolute before:right-0"></span>
-                        <span className="absolute right-[100vw] group-hover:right-[45vw] -bottom-[118px] inline-flex items-center h-0.5 w-[100vw] duration-1000 bg-white before:inline-block before:h-3 before:w-3 before:border-t-2 before:border-r-2 before:border-white before:rotate-45 before:absolute before:right-0"></span>
+                        <span className="absolute left-[72%] inline-flex items-center h-0.5 w-[65px] group-hover:w-52 duration-1000 bg-white group-hover:bg-t-pale before:inline-block before:h-3 before:w-3 before:border-t-2 before:border-r-2 before:border-t-pale before:rotate-45 before:absolute before:right-0 pointer-events-none"></span>
+                        <span className="absolute right-[100vw] group-hover:right-[45vw] -bottom-[118px] inline-flex items-center h-0.5 w-[100vw] duration-1000 bg-t-pale before:inline-block before:h-3 before:w-3 before:border-t-2 before:border-r-2 before:border-t-pale before:rotate-45 before:absolute before:right-0"></span>
                     </a>
-                    <a
-                        href="/"
-                        className="py-[18px] px-[50px] rounded-full bg-m-blue-green-gradient"
+                    <span
                         onMouseEnter={() => setIsHovered(true)}
                         onMouseLeave={() => setIsHovered(false)}
-                    >Замовити демо</a>
+                    >
+                        <OrderDemoButton />
+                    </span>
                 </div>
 
             </section >

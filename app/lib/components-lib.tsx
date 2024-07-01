@@ -1,4 +1,3 @@
-import { ReactNode } from 'react';
 import HeroSection from '../components/main-page/HeroSection';
 import VideoBanner from '../components/main-page/VideoBanner';
 import TabsSection from '../components/main-page/TabsSection';
