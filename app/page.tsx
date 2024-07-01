@@ -29,18 +29,9 @@ interface HomeProps {
   pageComponentOrder: (IComponentItem | undefined)[];
 }
 
-export const getStaticProps: GetStaticProps<HomeProps> = async () => {
+async function Home() {
   const pageComponentOrder = await getComponentListForRender();
 
-  return {
-    props: {
-      pageComponentOrder,
-    },
-    revalidate: 10,
-  };
-};
-
-function Home({ pageComponentOrder }: HomeProps) {
   return (
     <div className="bg-t-pale relative">
       <Header />
