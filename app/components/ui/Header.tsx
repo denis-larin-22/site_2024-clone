@@ -18,7 +18,7 @@ export default function Header() {
                 </div>
             </div>
 
-            <header className="sticky z-50 top-0 max-w-[1288px] mx-auto py-4 px-6 bg-white/40 backdrop-blur-lg rounded-[34px] flex justify-between">
+            <header className="sticky z-50 top-0 max-w-[1288px] w-full mx-auto py-4 px-6 bg-white/40 backdrop-blur-lg rounded-[34px] flex justify-between">
                 <Image
                     alt="Piramid logo"
                     src={"/assets/images/full_logo.svg"}

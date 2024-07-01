@@ -1,4 +1,4 @@
-import { GetStaticProps } from "next";
+import Main from "./Main";
 import AccordionSection from "./components/main-page/AccordionSection";
 import BusinessPromo from "./components/main-page/BusinessPromo";
 import CarouselSection from "./components/main-page/CarouselSection";
@@ -12,39 +12,15 @@ import Header from "./components/ui/Header";
 import { IComponentItem, mainComponentsList } from "./lib/components-lib";
 import { getMainPageComponentOrder } from "./lib/contentful/contentful-api";
 
-async function getComponentListForRender(): Promise<(IComponentItem | undefined)[]> {
-  const mainPageComponentOrder = await getMainPageComponentOrder();
 
-  const result = mainPageComponentOrder.map((item) => {
-    const componentOrUndefined = mainComponentsList[item.componentId];
-    if (!componentOrUndefined) return undefined;
 
-    return componentOrUndefined;
-  });
-
-  return result;
-}
-
-interface HomeProps {
-  pageComponentOrder: (IComponentItem | undefined)[];
-}
-
-async function Home() {
-  const pageComponentOrder = await getComponentListForRender();
+export default async function Home() {
 
   return (
-    <div className="bg-t-pale relative">
+    <div className="bg-t-pale relative min-h-screen flex flex-col justify-between">
       <Header />
-      <main className="overflow-hidden">
-        {pageComponentOrder.map((component, index) => {
-          if (!component) return null;
-
-          return <div key={index}>{component.component}</div>;
-        })}
-      </main>
+      <Main />
       <Footer />
-    </div>
+    </div >
   );
 }
-
-export default Home;
