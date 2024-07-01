@@ -1,3 +1,4 @@
+import { GetStaticProps } from "next";
 import AccordionSection from "./components/main-page/AccordionSection";
 import BusinessPromo from "./components/main-page/BusinessPromo";
 import CarouselSection from "./components/main-page/CarouselSection";
@@ -16,17 +17,30 @@ async function getComponentListForRender(): Promise<(IComponentItem | undefined)
 
   const result = mainPageComponentOrder.map((item) => {
     const componentOrUndefined = mainComponentsList[item.componentId];
-    if (!componentOrUndefined) return
+    if (!componentOrUndefined) return undefined;
 
     return componentOrUndefined;
-  })
+  });
 
-  return result
+  return result;
 }
 
-export default async function Home() {
+interface HomeProps {
+  pageComponentOrder: (IComponentItem | undefined)[];
+}
+
+export const getStaticProps: GetStaticProps<HomeProps> = async () => {
   const pageComponentOrder = await getComponentListForRender();
 
+  return {
+    props: {
+      pageComponentOrder,
+    },
+    revalidate: 10,
+  };
+};
+
+function Home({ pageComponentOrder }: HomeProps) {
   return (
     <div className="bg-t-pale relative">
       <Header />
@@ -38,6 +52,8 @@ export default async function Home() {
         })}
       </main>
       <Footer />
-    </div >
+    </div>
   );
 }
+
+export default Home;
